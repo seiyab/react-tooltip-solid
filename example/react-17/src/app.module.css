@@ -1,0 +1,16 @@
+.right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.tooltip {
+  background-color: #444;
+  color: #fff;
+}

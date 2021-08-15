@@ -1,36 +1,28 @@
 import * as React from "react";
 
+import { useTooltip } from "src/hooks/useTooltip";
+
 type Props = {
+  effect?: "float" | "solid";
+  place?: "top" | "left" | "bottom" | "right";
   tooltip: React.ReactChild;
 };
 
 const TooltipListener: React.FunctionComponent<Props> = ({
+  effect = "float",
+  place = "top",
   tooltip,
   children,
 }) => {
-  const [showTooltip, setShowTooltip] = React.useState(false);
-  const closeTooltip = () => setShowTooltip(false);
-  const openTooltip = () => setShowTooltip(true);
+  const { active, listenerProps, tooltipProps } = useTooltip({
+    effect,
+    place,
+  });
   return (
-    <div
-      onMouseEnter={openTooltip}
-      onMouseLeave={closeTooltip}
-      style={{
-        position: "relative",
-      }}
-    >
-      {children}
-      {showTooltip && (
-        <div
-          style={{
-            position: "absolute",
-            zIndex: 100,
-          }}
-        >
-          {tooltip}
-        </div>
-      )}
-    </div>
+    <>
+      <div {...listenerProps}>{children}</div>
+      {active && <div {...tooltipProps}>{tooltip}</div>}
+    </>
   );
 };
 

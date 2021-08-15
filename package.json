@@ -28,6 +28,11 @@
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.4",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "typescript-plugin-css-modules": "^3.4.0"
+  },
+  "dependencies": {
+    "@seiyab/do-expr": "^1.0.0",
+    "react-jss": "^10.7.1"
   }
 }
