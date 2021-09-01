@@ -1,36 +1,35 @@
+import { cx } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 
-import { StyleArg, useStyles } from "src/hooks/useStyles";
+import {
+  calcSolidPosition,
+  calcStylePosition,
+  stylePosition,
+} from "src/position";
+import { Place } from "src/position/place";
+import { classes } from "src/style/classes";
 
 type UseTooltipOption = {
   effect: "float" | "solid";
-  place: "top" | "left" | "bottom" | "right";
+  place: Place;
+  backgroundColor: Required<React.CSSProperties>["backgroundColor"];
 };
 
-type UseTooltipResult<Elem extends HTMLDivElement> = {
+type UseTooltipResult = {
   active: boolean;
-  listenerProps: Required<
-    // Pick<React.DOMAttributes<Elem>, "onMouseEnter" | "onMouseLeave"> & {
-    Pick<React.DOMAttributes<Elem>, never> & {
-      className: string;
-      ref: React.RefObject<Elem>;
-    }
+  listenerProps: Required<Pick<JSX.IntrinsicElements["div"], "ref">>;
+  tooltipProps: Required<
+    Pick<JSX.IntrinsicElements["div"], "style" | "className" | "ref">
   >;
-  tooltipProps: {
-    className: string;
-    ref: React.RefObject<Elem>;
-  };
 };
 
-export function useTooltip<Elem extends HTMLDivElement>(
-  option: UseTooltipOption
-): UseTooltipResult<Elem> {
+export function useTooltip(option: UseTooltipOption): UseTooltipResult {
   const [active, setActive] = React.useState(false);
   const [cursor, setCursor] = React.useState<[number, number]>([0, 0]);
 
-  const listenerRef = React.useRef<Elem>(null);
-  const tooltipRef = React.useRef<Elem>(null);
+  const listenerRef = React.useRef<HTMLDivElement>(null);
+  const tooltipRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const followCursor = (event: DocumentEventMap["mousemove"]) => {
@@ -51,57 +50,26 @@ export function useTooltip<Elem extends HTMLDivElement>(
     return () => document.removeEventListener("mousemove", onMousemove);
   });
 
-  const position = calcStylePosition(cursor, tooltipRef.current, option.place);
+  const position = calcStylePosition(
+    do_(() => {
+      if (option.effect === "float") return cursor;
+      return calcSolidPosition(listenerRef.current, option.place);
+    }),
+    tooltipRef.current,
+    option.place
+  );
 
-  const classes = useStyles({ position });
+  const c = classes({ backgroundColor: option.backgroundColor });
+
   return {
     active,
     listenerProps: {
       ref: listenerRef,
-      className: classes.listener,
     },
     tooltipProps: {
       ref: tooltipRef,
-      className: classes.tooltip,
+      className: cx(c.tooltip, c[option.place], option.place),
+      style: stylePosition(position),
     },
-  };
-}
-
-function calcStylePosition<Elem extends HTMLDivElement>(
-  target: [number, number],
-  tooltipElem: Elem | null,
-  place: UseTooltipOption["place"]
-): StyleArg["position"] {
-  if (!tooltipElem)
-    return {
-      left: -1_000_000,
-      top: -1_000_000,
-    };
-  const [x, y] = target;
-  const rect = tooltipElem.getBoundingClientRect();
-
-  const gap = 10;
-
-  if (place === "left")
-    return {
-      left: x - rect.width - gap,
-      top: y - rect.height / 2,
-    };
-
-  if (place === "right")
-    return {
-      left: x + gap,
-      top: y - rect.height / 2,
-    };
-
-  if (place === "bottom")
-    return {
-      left: x - rect.width / 2,
-      top: y + gap,
-    };
-
-  return {
-    left: x - rect.width / 2,
-    top: y - rect.height - gap,
   };
 }

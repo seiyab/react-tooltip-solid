@@ -24,6 +24,7 @@ const App: React.VoidFunctionComponent = () => {
             key={i}
             tooltip={<div className={styles.tooltip}>Hello</div>}
             place={ps[i % 4]}
+            backgroundColor="black"
           >
             hover here
           </TooltipListener>
