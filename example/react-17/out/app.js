@@ -22874,6 +22874,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           return horizontalWrapper;
         });
         const contentClass = css({
+          borderRadius: "3px",
+          padding: "8px 12px",
           backgroundColor
         });
         return /* @__PURE__ */ React3.createElement("div", {
@@ -22950,7 +22952,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React4 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-36845-FljsvIN206a4/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-37281-cFXwvVQI8P7h/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
   var css2 = `._right_1mzdy_1 {
   display: flex;

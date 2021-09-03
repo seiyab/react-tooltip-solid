@@ -34,6 +34,8 @@ export const Tooltip: React.FunctionComponent<Props> = ({
     return horizontalWrapper;
   });
   const contentClass = css({
+    borderRadius: "3px",
+    padding: "8px 12px",
     backgroundColor,
   });
   return (
