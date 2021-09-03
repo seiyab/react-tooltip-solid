@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { useTooltip } from "src/hooks/useTooltip";
+import { Tooltip } from "src/Tooltip";
 
 type Props = {
   effect?: "float" | "solid";
@@ -24,7 +25,13 @@ const TooltipListener: React.FunctionComponent<Props> = ({
   return (
     <>
       <div {...listenerProps}>{children}</div>
-      {active && <div {...tooltipProps}>{tooltip}</div>}
+      {active && (
+        <div {...tooltipProps}>
+          <Tooltip place={place} backgroundColor={backgroundColor}>
+            {tooltip}
+          </Tooltip>
+        </div>
+      )}
     </>
   );
 };

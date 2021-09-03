@@ -1,7 +1,7 @@
-export const place = {
+export const Place = {
   top: "top",
   left: "left",
   bottom: "bottom",
   right: "right",
 } as const;
-export type Place = typeof place[keyof typeof place];
+export type Place = typeof Place[keyof typeof Place];

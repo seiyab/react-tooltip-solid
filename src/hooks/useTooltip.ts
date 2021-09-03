@@ -1,4 +1,4 @@
-import { cx } from "@emotion/css";
+import { css } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 
@@ -8,7 +8,6 @@ import {
   stylePosition,
 } from "src/position";
 import { Place } from "src/position/place";
-import { classes } from "src/style/classes";
 
 type UseTooltipOption = {
   effect: "float" | "solid";
@@ -59,8 +58,6 @@ export function useTooltip(option: UseTooltipOption): UseTooltipResult {
     option.place
   );
 
-  const c = classes({ backgroundColor: option.backgroundColor });
-
   return {
     active,
     listenerProps: {
@@ -68,7 +65,10 @@ export function useTooltip(option: UseTooltipOption): UseTooltipResult {
     },
     tooltipProps: {
       ref: tooltipRef,
-      className: cx(c.tooltip, c[option.place], option.place),
+      className: css({
+        zIndex: 999,
+        position: "fixed",
+      }),
       style: stylePosition(position),
     },
   };

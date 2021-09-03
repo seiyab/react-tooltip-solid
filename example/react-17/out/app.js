@@ -505,7 +505,7 @@
             }
             return element;
           };
-          function createElement2(type, config, children) {
+          function createElement4(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -1553,7 +1553,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement2.apply(this, arguments);
+            var element = createElement4.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -2447,11 +2447,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React3 = require_react();
+          var React5 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2483,7 +2483,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React3) {
+          if (!React5) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3699,7 +3699,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React3.Children.forEach(children, function(child) {
+            React5.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3710,7 +3710,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React3.Children.forEach(props.children, function(child) {
+                React5.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8464,7 +8464,7 @@
               }
             }
           }
-          function createElement2(type, props, rootContainerElement, parentNamespace) {
+          function createElement4(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9341,7 +9341,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement2(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement4(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10903,7 +10903,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React3.Component().refs;
+          var emptyRefsObject = new React5.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -16951,20 +16951,20 @@
               resetTextContent(parent);
               parentFiber.flags &= ~ContentReset;
             }
-            var before2 = getHostSibling(finishedWork);
+            var before = getHostSibling(finishedWork);
             if (isContainer) {
-              insertOrAppendPlacementNodeIntoContainer(finishedWork, before2, parent);
+              insertOrAppendPlacementNodeIntoContainer(finishedWork, before, parent);
             } else {
-              insertOrAppendPlacementNode(finishedWork, before2, parent);
+              insertOrAppendPlacementNode(finishedWork, before, parent);
             }
           }
-          function insertOrAppendPlacementNodeIntoContainer(node2, before2, parent) {
+          function insertOrAppendPlacementNodeIntoContainer(node2, before, parent) {
             var tag = node2.tag;
             var isHost = tag === HostComponent || tag === HostText;
             if (isHost || enableFundamentalAPI) {
               var stateNode = isHost ? node2.stateNode : node2.stateNode.instance;
-              if (before2) {
-                insertInContainerBefore(parent, stateNode, before2);
+              if (before) {
+                insertInContainerBefore(parent, stateNode, before);
               } else {
                 appendChildToContainer(parent, stateNode);
               }
@@ -16973,22 +16973,22 @@
             else {
               var child = node2.child;
               if (child !== null) {
-                insertOrAppendPlacementNodeIntoContainer(child, before2, parent);
+                insertOrAppendPlacementNodeIntoContainer(child, before, parent);
                 var sibling = child.sibling;
                 while (sibling !== null) {
-                  insertOrAppendPlacementNodeIntoContainer(sibling, before2, parent);
+                  insertOrAppendPlacementNodeIntoContainer(sibling, before, parent);
                   sibling = sibling.sibling;
                 }
               }
             }
           }
-          function insertOrAppendPlacementNode(node2, before2, parent) {
+          function insertOrAppendPlacementNode(node2, before, parent) {
             var tag = node2.tag;
             var isHost = tag === HostComponent || tag === HostText;
             if (isHost || enableFundamentalAPI) {
               var stateNode = isHost ? node2.stateNode : node2.stateNode.instance;
-              if (before2) {
-                insertBefore(parent, stateNode, before2);
+              if (before) {
+                insertBefore(parent, stateNode, before);
               } else {
                 appendChild(parent, stateNode);
               }
@@ -16997,10 +16997,10 @@
             else {
               var child = node2.child;
               if (child !== null) {
-                insertOrAppendPlacementNode(child, before2, parent);
+                insertOrAppendPlacementNode(child, before, parent);
                 var sibling = child.sibling;
                 while (sibling !== null) {
-                  insertOrAppendPlacementNode(sibling, before2, parent);
+                  insertOrAppendPlacementNode(sibling, before, parent);
                   sibling = sibling.sibling;
                 }
               }
@@ -20433,7 +20433,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React3 = require_react();
+          var React5 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -20490,7 +20490,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -21309,13 +21309,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         function StyleSheet2(options) {
           var _this = this;
           this._insertTag = function(tag) {
-            var before2;
+            var before;
             if (_this.tags.length === 0) {
-              before2 = _this.prepend ? _this.container.firstChild : _this.before;
+              before = _this.prepend ? _this.container.firstChild : _this.before;
             } else {
-              before2 = _this.tags[_this.tags.length - 1].nextSibling;
+              before = _this.tags[_this.tags.length - 1].nextSibling;
             }
-            _this.container.insertBefore(tag, before2);
+            _this.container.insertBefore(tag, before);
             _this.tags.push(tag);
           };
           this.isSpeedy = options.speedy === void 0 ? false : options.speedy;
@@ -21563,10 +21563,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function compile(value) {
     return dealloc(parse("", null, null, null, [""], value = alloc(value), 0, [0], value));
   }
-  function parse(value, root, parent, rule, rules, rulesets, pseudo2, points, declarations) {
+  function parse(value, root, parent, rule, rules, rulesets, pseudo, points, declarations) {
     var index = 0;
     var offset = 0;
-    var length2 = pseudo2;
+    var length2 = pseudo;
     var atrule = 0;
     var property = 0;
     var previous = 0;
@@ -21637,7 +21637,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
                       parse(characters2, reference, reference, reference, [""], children, length2, points, children);
                   }
           }
-          index = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo2;
+          index = offset = property = 0, variable = ampersand = 1, type = characters2 = "", length2 = pseudo;
           break;
         case 58:
           length2 = 1 + strlen(characters2), property = previous;
@@ -22672,8 +22672,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       "use strict";
       Object.defineProperty(exports, "__esModule", {value: true});
       exports.do_ = void 0;
-      var do_2 = (f) => f();
-      exports.do_ = do_2;
+      var do_4 = (f) => f();
+      exports.do_ = do_4;
     }
   });
 
@@ -22684,124 +22684,35 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       top: `${y}px`
     };
   }
-  function calcStylePosition(target, tooltipElem, place2) {
+  function calcStylePosition(target, tooltipElem, place) {
     if (!tooltipElem)
       return [-1e6, -1e6];
     const [x, y] = target;
     const rect = tooltipElem.getBoundingClientRect();
     const gap = 10;
-    if (place2 === "left")
+    if (place === "left")
       return [x - rect.width - gap, y - rect.height / 2];
-    if (place2 === "right")
+    if (place === "right")
       return [x + gap, y - rect.height / 2];
-    if (place2 === "bottom")
+    if (place === "bottom")
       return [x - rect.width / 2, y + gap];
     return [x - rect.width / 2, y - rect.height - gap];
   }
-  function calcSolidPosition(listenerElem, place2) {
+  function calcSolidPosition(listenerElem, place) {
     if (!listenerElem)
       return [-1e6, -1e6];
     const rect = listenerElem.getBoundingClientRect();
     const gap = 5;
-    if (place2 === "left")
+    if (place === "left")
       return [rect.left - gap, rect.top + rect.height / 2];
-    if (place2 === "right")
+    if (place === "right")
       return [rect.right + gap, rect.top + rect.height / 2];
-    if (place2 === "bottom")
+    if (place === "bottom")
       return [rect.left + rect.width / 2, rect.bottom + gap];
     return [rect.left + rect.width / 2, rect.top - gap];
   }
   var init_position = __esm({
     "../../src/position/index.ts"() {
-    }
-  });
-
-  // ../../src/position/place.ts
-  var place;
-  var init_place = __esm({
-    "../../src/position/place.ts"() {
-      place = {
-        top: "top",
-        left: "left",
-        bottom: "bottom",
-        right: "right"
-      };
-    }
-  });
-
-  // ../../src/style/classes.ts
-  function classes({backgroundColor}) {
-    return {
-      tooltip: css({
-        position: "fixed",
-        zIndex: 100,
-        borderRadius: "3px",
-        display: "inline-block",
-        [`&.${place.top}::after`]: {
-          color: "red"
-        },
-        backgroundColor
-      }),
-      [place.top]: css({
-        "&::after": {
-          ...vertical,
-          ...border,
-          borderTop: `8px solid ${backgroundColor}`
-        }
-      }, after),
-      [place.left]: css({
-        "&::before": {
-          ...horizontal,
-          ...border,
-          borderLeft: `8px solid ${backgroundColor}`
-        }
-      }, before),
-      [place.right]: css({
-        "&::after": {
-          ...horizontal,
-          ...border,
-          borderRight: `8px solid ${backgroundColor}`
-        }
-      }, after),
-      [place.bottom]: css({
-        "&::before": {
-          ...vertical,
-          ...border,
-          borderBottom: `8px solid ${backgroundColor}`
-        }
-      }, before)
-    };
-  }
-  var border, horizontal, vertical, pseudo, before, after;
-  var init_classes = __esm({
-    "../../src/style/classes.ts"() {
-      init_emotion_css_esm();
-      init_place();
-      border = {
-        borderWidth: "8px",
-        borderTop: "8px solid transparent",
-        borderBottom: "8px solid transparent",
-        borderLeft: "8px solid transparent",
-        borderRight: "8px solid transparent"
-      };
-      horizontal = {
-        marginTop: "-5px",
-        top: "50%"
-      };
-      vertical = {
-        marginLeft: "-8px",
-        left: "50%"
-      };
-      pseudo = {
-        content: '""',
-        position: "absolute"
-      };
-      before = {
-        "&:before": pseudo
-      };
-      after = {
-        "&:after": pseudo
-      };
     }
   });
 
@@ -22839,7 +22750,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         return cursor2;
       return calcSolidPosition(listenerRef.current, option.place);
     }), tooltipRef.current, option.place);
-    const c = classes({backgroundColor: option.backgroundColor});
     return {
       active,
       listenerProps: {
@@ -22847,7 +22757,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       },
       tooltipProps: {
         ref: tooltipRef,
-        className: cx(c.tooltip, c[option.place], option.place),
+        className: css({
+          zIndex: 999,
+          position: "fixed"
+        }),
         style: stylePosition(position2)
       }
     };
@@ -22859,7 +22772,142 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       import_do_expr = __toModule(require_lib());
       React = __toModule(require_react());
       init_position();
-      init_classes();
+    }
+  });
+
+  // ../../src/position/place.ts
+  var Place;
+  var init_place = __esm({
+    "../../src/position/place.ts"() {
+      Place = {
+        top: "top",
+        left: "left",
+        bottom: "bottom",
+        right: "right"
+      };
+    }
+  });
+
+  // ../../src/Tooltip/Arrow/index.tsx
+  var import_do_expr2, React2, commonClass, Arrow, border;
+  var init_Arrow = __esm({
+    "../../src/Tooltip/Arrow/index.tsx"() {
+      init_emotion_css_esm();
+      import_do_expr2 = __toModule(require_lib());
+      React2 = __toModule(require_react());
+      init_place();
+      commonClass = css({
+        width: "0",
+        height: "0"
+      });
+      Arrow = ({
+        className,
+        place,
+        backgroundColor
+      }) => {
+        const placeClass = (0, import_do_expr2.do_)(() => {
+          if (place === Place.top)
+            return css({
+              ...border,
+              borderTop: `8px solid ${backgroundColor}`
+            });
+          if (place === Place.left)
+            return css({
+              ...border,
+              borderLeft: `8px solid ${backgroundColor}`
+            });
+          if (place === Place.right)
+            return css({
+              ...border,
+              borderRight: `8px solid ${backgroundColor}`
+            });
+          if (place === Place.bottom)
+            return css({
+              ...border,
+              borderBottom: `8px solid ${backgroundColor}`
+            });
+        });
+        return /* @__PURE__ */ React2.createElement("div", {
+          className: cx(className, placeClass, commonClass)
+        });
+      };
+      border = {
+        borderTop: "8px solid transparent",
+        borderBottom: "8px solid transparent",
+        borderLeft: "8px solid transparent",
+        borderRight: "8px solid transparent"
+      };
+    }
+  });
+
+  // ../../src/Tooltip/index.tsx
+  var Tooltip_exports = {};
+  __export(Tooltip_exports, {
+    Tooltip: () => Tooltip
+  });
+  var import_do_expr3, React3, horizontalWrapper, verticalWrapper, verticalArrow, Tooltip;
+  var init_Tooltip = __esm({
+    "../../src/Tooltip/index.tsx"() {
+      init_emotion_css_esm();
+      import_do_expr3 = __toModule(require_lib());
+      React3 = __toModule(require_react());
+      init_place();
+      init_Arrow();
+      horizontalWrapper = css({
+        display: "flex",
+        alignItems: "center"
+      });
+      verticalWrapper = css({});
+      verticalArrow = css({
+        marginLeft: "auto",
+        marginRight: "auto"
+      });
+      Tooltip = ({
+        className,
+        place,
+        backgroundColor,
+        children
+      }) => {
+        const wrapperClass = (0, import_do_expr3.do_)(() => {
+          if (place === Place.top || place === Place.bottom)
+            return verticalWrapper;
+          return horizontalWrapper;
+        });
+        const contentClass = css({
+          backgroundColor
+        });
+        return /* @__PURE__ */ React3.createElement("div", {
+          className: wrapperClass
+        }, (0, import_do_expr3.do_)(() => {
+          if (place === Place.right)
+            return /* @__PURE__ */ React3.createElement(Arrow, {
+              place,
+              backgroundColor
+            });
+          if (place === Place.bottom)
+            return /* @__PURE__ */ React3.createElement(Arrow, {
+              className: verticalArrow,
+              place,
+              backgroundColor
+            });
+          return null;
+        }), /* @__PURE__ */ React3.createElement("div", {
+          className: cx(className, contentClass)
+        }, children), (0, import_do_expr3.do_)(() => {
+          if (place === Place.top)
+            return /* @__PURE__ */ React3.createElement(Arrow, {
+              className: verticalArrow,
+              place,
+              backgroundColor
+            });
+          if (place === Place.left)
+            return /* @__PURE__ */ React3.createElement(Arrow, {
+              place,
+              backgroundColor
+            });
+          return null;
+        }));
+      };
     }
   });
 
@@ -22870,13 +22918,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       Object.defineProperty(exports, "__esModule", {value: true});
       var jsx_runtime_1 = require_jsx_runtime();
       var useTooltip_1 = (init_useTooltip(), useTooltip_exports);
-      var TooltipListener2 = ({effect = "float", place: place2 = "top", backgroundColor = "white", tooltip, children}) => {
+      var Tooltip_1 = (init_Tooltip(), Tooltip_exports);
+      var TooltipListener2 = ({effect = "float", place = "top", backgroundColor = "white", tooltip, children}) => {
         const {active, listenerProps, tooltipProps} = useTooltip_1.useTooltip({
           effect,
-          place: place2,
+          place,
           backgroundColor
         });
-        return jsx_runtime_1.jsxs(jsx_runtime_1.Fragment, {children: [jsx_runtime_1.jsx("div", Object.assign({}, listenerProps, {children}), void 0), active && jsx_runtime_1.jsx("div", Object.assign({}, tooltipProps, {children: tooltip}), void 0)]}, void 0);
+        return jsx_runtime_1.jsxs(jsx_runtime_1.Fragment, {children: [jsx_runtime_1.jsx("div", Object.assign({}, listenerProps, {children}), void 0), active && jsx_runtime_1.jsx("div", Object.assign({}, tooltipProps, {children: jsx_runtime_1.jsx(Tooltip_1.Tooltip, Object.assign({place, backgroundColor}, {children: tooltip}), void 0)}), void 0)]}, void 0);
       };
       exports.default = TooltipListener2;
     }
@@ -22898,25 +22947,24 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 
   // src/app.tsx
   var import_react_dom = __toModule(require_react_dom());
-  var React2 = __toModule(require_react());
+  var React4 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-27511-RfdCtPY7wlHP/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-36845-FljsvIN206a4/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
-  var css2 = `._right_1iwqm_1 {
+  var css2 = `._right_1mzdy_1 {
   display: flex;
   justify-content: flex-end;
 }
 
-._grid_1iwqm_6 {
+._grid_1mzdy_6 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
 
-._tooltip_1iwqm_13 {
-  background-color: #444;
+._tooltip_1mzdy_13 {
   color: #fff;
 }
 `;
@@ -22928,26 +22976,26 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       document.head.appendChild(el);
     }
   })();
-  var app_module_css_default = {"right": "_right_1iwqm_1", "grid": "_grid_1iwqm_6", "tooltip": "_tooltip_1iwqm_13"};
+  var app_module_css_default = {"right": "_right_1mzdy_1", "grid": "_grid_1mzdy_6", "tooltip": "_tooltip_1mzdy_13"};
 
   // src/app.tsx
   var ps = ["top", "left", "right", "bottom"];
   var App = () => {
-    return /* @__PURE__ */ React2.createElement("div", null, /* @__PURE__ */ React2.createElement(import_react_tooltip_solid.TooltipListener, {
-      tooltip: /* @__PURE__ */ React2.createElement("div", {
+    return /* @__PURE__ */ React4.createElement("div", null, /* @__PURE__ */ React4.createElement(import_react_tooltip_solid.TooltipListener, {
+      tooltip: /* @__PURE__ */ React4.createElement("div", {
         className: app_module_css_default.tooltip
       }, "Hello")
-    }, "hover here"), /* @__PURE__ */ React2.createElement("div", {
+    }, "hover here"), /* @__PURE__ */ React4.createElement("div", {
       className: app_module_css_default.right
-    }, /* @__PURE__ */ React2.createElement(import_react_tooltip_solid.TooltipListener, {
-      tooltip: /* @__PURE__ */ React2.createElement("div", {
+    }, /* @__PURE__ */ React4.createElement(import_react_tooltip_solid.TooltipListener, {
+      tooltip: /* @__PURE__ */ React4.createElement("div", {
         className: app_module_css_default.tooltip
       }, "Hello")
-    }, "hover here")), /* @__PURE__ */ React2.createElement("div", {
+    }, "hover here")), /* @__PURE__ */ React4.createElement("div", {
       className: app_module_css_default.grid
-    }, new Array(10).fill(null).map((_, i) => /* @__PURE__ */ React2.createElement(import_react_tooltip_solid.TooltipListener, {
+    }, new Array(10).fill(null).map((_, i) => /* @__PURE__ */ React4.createElement(import_react_tooltip_solid.TooltipListener, {
       key: i,
-      tooltip: /* @__PURE__ */ React2.createElement("div", {
+      tooltip: /* @__PURE__ */ React4.createElement("div", {
         className: app_module_css_default.tooltip
       }, "Hello"),
       place: ps[i % 4],
@@ -22955,7 +23003,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }, "hover here"))));
   };
   var domContainer = document.querySelector("#app");
-  (0, import_react_dom.render)(React2.createElement(App), domContainer);
+  (0, import_react_dom.render)(React4.createElement(App), domContainer);
 })();
 /*
 object-assign
