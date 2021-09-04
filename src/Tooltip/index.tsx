@@ -1,4 +1,4 @@
-import { css, CSSObject, cx } from "@emotion/css";
+import { css, CSSObject } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 import {
@@ -9,7 +9,7 @@ import {
 
 import { Place } from "src/position/place";
 import { TooltipContext } from "src/TooltipContext";
-import { Arrow } from "./Arrow";
+import SpeechBubble from "./SpeechBubble";
 
 type Props = {
   className?: string;
@@ -22,23 +22,6 @@ const wrapper: CSSObject = {
   position: "fixed",
   zIndex: 999,
 };
-
-const horizontalWrapper = () =>
-  css(
-    {
-      display: "flex",
-      alignItems: "center",
-    },
-    wrapper
-  );
-
-const verticalWrapper = () => css({}, wrapper);
-
-const verticalArrow = () =>
-  css({
-    marginLeft: "auto",
-    marginRight: "auto",
-  });
 
 const Tooltip: React.FunctionComponent<Props> = ({
   className,
@@ -60,16 +43,6 @@ const Tooltip: React.FunctionComponent<Props> = ({
     return () => document.removeEventListener("mousemove", followCursor);
   });
 
-  const wrapperClass = do_(() => {
-    if (place === Place.top || place === Place.bottom) return verticalWrapper();
-    return horizontalWrapper();
-  });
-  const contentClass = css({
-    borderRadius: "3px",
-    padding: "8px 12px",
-    backgroundColor,
-  });
-
   const position = calcStylePosition(
     do_(() => {
       if (effect === "float") return cursor;
@@ -84,34 +57,14 @@ const Tooltip: React.FunctionComponent<Props> = ({
   return (
     <>
       {context.active && (
-        <div className={wrapperClass} style={stylePosition(position)} ref={ref}>
-          {do_(() => {
-            if (place === Place.right)
-              return <Arrow place={place} backgroundColor={backgroundColor} />;
-            if (place === Place.bottom)
-              return (
-                <Arrow
-                  className={verticalArrow()}
-                  place={place}
-                  backgroundColor={backgroundColor}
-                />
-              );
-            return null;
-          })}
-          <div className={cx(className, contentClass)}>{children}</div>
-          {do_(() => {
-            if (place === Place.top)
-              return (
-                <Arrow
-                  className={verticalArrow()}
-                  place={place}
-                  backgroundColor={backgroundColor}
-                />
-              );
-            if (place === Place.left)
-              return <Arrow place={place} backgroundColor={backgroundColor} />;
-            return null;
-          })}
+        <div className={css(wrapper)} style={stylePosition(position)} ref={ref}>
+          <SpeechBubble
+            className={className}
+            place={place}
+            backgroundColor={backgroundColor}
+          >
+            {children}
+          </SpeechBubble>
         </div>
       )}
     </>

@@ -7,7 +7,7 @@ import { Place } from "src/position/place";
 type Props = {
   className?: string;
   place: Place;
-  backgroundColor: string;
+  backgroundColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
 };
 
 const commonClass = css({
