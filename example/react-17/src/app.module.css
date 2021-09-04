@@ -13,3 +13,9 @@
 .tooltip {
   color: #fff;
 }
+
+.centering {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

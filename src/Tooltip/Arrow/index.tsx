@@ -10,11 +10,6 @@ type Props = {
   backgroundColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
 };
 
-const commonClass = css({
-  width: "0",
-  height: "0",
-});
-
 export const Arrow: React.VoidFunctionComponent<Props> = ({
   className,
   place,
@@ -24,30 +19,41 @@ export const Arrow: React.VoidFunctionComponent<Props> = ({
     if (place === Place.top)
       return css({
         ...border,
-        borderTop: `8px solid ${backgroundColor}`,
+        borderTop: `${width} solid ${backgroundColor}`,
+        marginBottom: `-${width}`,
       });
     if (place === Place.left)
       return css({
         ...border,
-        borderLeft: `8px solid ${backgroundColor}`,
+        borderLeft: `${width} solid ${backgroundColor}`,
+        marginRight: `-${width}`,
       });
     if (place === Place.right)
       return css({
         ...border,
-        borderRight: `8px solid ${backgroundColor}`,
+        borderRight: `${width} solid ${backgroundColor}`,
+        marginLeft: `-${width}`,
       });
     if (place === Place.bottom)
       return css({
         ...border,
-        borderBottom: `8px solid ${backgroundColor}`,
+        borderBottom: `${width} solid ${backgroundColor}`,
+        marginTop: `-${width}`,
       });
   });
   return <div className={cx(className, placeClass, commonClass)} />;
 };
 
+const width = "8px";
+
+const commonClass = css({
+  width: "0",
+  height: "0",
+});
+
 const border: CSSObject = {
-  borderTop: "8px solid transparent",
-  borderBottom: "8px solid transparent",
-  borderLeft: "8px solid transparent",
-  borderRight: "8px solid transparent",
+  borderTop: `${width} solid transparent`,
+  borderBottom: `${width} solid transparent`,
+  borderLeft: `${width} solid transparent`,
+  borderRight: `${width} solid transparent`,
 };

@@ -2,6 +2,7 @@ import { css, CSSObject } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 import {
+  calcFloatPosition,
   calcSolidPosition,
   calcStylePosition,
   stylePosition,
@@ -45,7 +46,7 @@ const Tooltip: React.FunctionComponent<Props> = ({
 
   const position = calcStylePosition(
     do_(() => {
-      if (effect === "float") return cursor;
+      if (effect === "float") return calcFloatPosition(cursor, place);
       return calcSolidPosition(
         context.listenerRef.current?.getBoundingClientRect() ?? null,
         place

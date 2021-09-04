@@ -21,7 +21,7 @@ export function calcStylePosition(
   const [x, y] = target;
   const rect = tooltipRect;
 
-  const gap = 10;
+  const gap = 5;
 
   if (place === "left") return [x - rect.width - gap, y - rect.height / 2];
 
@@ -32,13 +32,20 @@ export function calcStylePosition(
   return [x - rect.width / 2, y - rect.height - gap];
 }
 
+export function calcFloatPosition(cursor: Position, place: Place): Position {
+  const [x, y] = cursor;
+  if (place === Place.bottom) return [x, y + 13];
+  if (place === Place.right) return [x + 3, y];
+  return cursor;
+}
+
 export function calcSolidPosition(
   listenerRect: DOMRect | null,
   place: Place
 ): Position {
   if (!listenerRect) return [-1_000_000, -1_000_000];
   const rect = listenerRect;
-  const gap = 5;
+  const gap = 0;
   if (place === "left") return [rect.left - gap, rect.top + rect.height / 2];
   if (place === "right") return [rect.right + gap, rect.top + rect.height / 2];
   if (place === "bottom")

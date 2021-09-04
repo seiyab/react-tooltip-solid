@@ -22824,9 +22824,27 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
+  // ../../src/position/place.ts
+  var place_exports = {};
+  __export(place_exports, {
+    Place: () => Place
+  });
+  var Place;
+  var init_place = __esm({
+    "../../src/position/place.ts"() {
+      Place = {
+        top: "top",
+        left: "left",
+        bottom: "bottom",
+        right: "right"
+      };
+    }
+  });
+
   // ../../src/position/index.ts
   var position_exports = {};
   __export(position_exports, {
+    calcFloatPosition: () => calcFloatPosition,
     calcSolidPosition: () => calcSolidPosition,
     calcStylePosition: () => calcStylePosition,
     stylePosition: () => stylePosition
@@ -22842,7 +22860,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       return [-1e6, -1e6];
     const [x, y] = target;
     const rect = tooltipRect;
-    const gap = 10;
+    const gap = 5;
     if (place === "left")
       return [x - rect.width - gap, y - rect.height / 2];
     if (place === "right")
@@ -22851,11 +22869,19 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       return [x - rect.width / 2, y + gap];
     return [x - rect.width / 2, y - rect.height - gap];
   }
+  function calcFloatPosition(cursor, place) {
+    const [x, y] = cursor;
+    if (place === Place.bottom)
+      return [x, y + 13];
+    if (place === Place.right)
+      return [x + 3, y];
+    return cursor;
+  }
   function calcSolidPosition(listenerRect, place) {
     if (!listenerRect)
       return [-1e6, -1e6];
     const rect = listenerRect;
-    const gap = 5;
+    const gap = 0;
     if (place === "left")
       return [rect.left - gap, rect.top + rect.height / 2];
     if (place === "right")
@@ -22866,23 +22892,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
   var init_position = __esm({
     "../../src/position/index.ts"() {
-    }
-  });
-
-  // ../../src/position/place.ts
-  var place_exports = {};
-  __export(place_exports, {
-    Place: () => Place
-  });
-  var Place;
-  var init_place = __esm({
-    "../../src/position/place.ts"() {
-      Place = {
-        top: "top",
-        left: "left",
-        bottom: "bottom",
-        right: "right"
-      };
+      init_place();
     }
   });
 
@@ -22907,17 +22917,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   __export(Arrow_exports, {
     Arrow: () => Arrow
   });
-  var import_css, import_do_expr, React2, commonClass, Arrow, border;
+  var import_css, import_do_expr, React2, Arrow, width, commonClass, border;
   var init_Arrow = __esm({
     "../../src/Tooltip/Arrow/index.tsx"() {
       import_css = __toModule(require_emotion_css_cjs());
       import_do_expr = __toModule(require_lib());
       React2 = __toModule(require_react());
       init_place();
-      commonClass = (0, import_css.css)({
-        width: "0",
-        height: "0"
-      });
       Arrow = ({
         className,
         place,
@@ -22927,33 +22933,42 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           if (place === Place.top)
             return (0, import_css.css)({
               ...border,
-              borderTop: `8px solid ${backgroundColor}`
+              borderTop: `${width} solid ${backgroundColor}`,
+              marginBottom: `-${width}`
             });
           if (place === Place.left)
             return (0, import_css.css)({
               ...border,
-              borderLeft: `8px solid ${backgroundColor}`
+              borderLeft: `${width} solid ${backgroundColor}`,
+              marginRight: `-${width}`
             });
           if (place === Place.right)
             return (0, import_css.css)({
               ...border,
-              borderRight: `8px solid ${backgroundColor}`
+              borderRight: `${width} solid ${backgroundColor}`,
+              marginLeft: `-${width}`
             });
           if (place === Place.bottom)
             return (0, import_css.css)({
               ...border,
-              borderBottom: `8px solid ${backgroundColor}`
+              borderBottom: `${width} solid ${backgroundColor}`,
+              marginTop: `-${width}`
             });
         });
         return /* @__PURE__ */ React2.createElement("div", {
           className: (0, import_css.cx)(className, placeClass, commonClass)
         });
       };
+      width = "8px";
+      commonClass = (0, import_css.css)({
+        width: "0",
+        height: "0"
+      });
       border = {
-        borderTop: "8px solid transparent",
-        borderBottom: "8px solid transparent",
-        borderLeft: "8px solid transparent",
-        borderRight: "8px solid transparent"
+        borderTop: `${width} solid transparent`,
+        borderBottom: `${width} solid transparent`,
+        borderLeft: `${width} solid transparent`,
+        borderRight: `${width} solid transparent`
       };
     }
   });
@@ -23071,7 +23086,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         const position = position_1.calcStylePosition(do_expr_1.do_(() => {
           var _a2, _b2;
           if (effect === "float")
-            return cursor;
+            return position_1.calcFloatPosition(cursor, place);
           return position_1.calcSolidPosition((_b2 = (_a2 = context.listenerRef.current) === null || _a2 === void 0 ? void 0 : _a2.getBoundingClientRect()) !== null && _b2 !== void 0 ? _b2 : null, place);
         }), (_b = (_a = ref.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, place);
         return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, {children: context.active && jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper), style: position_1.stylePosition(position), ref}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, place, backgroundColor}, {children}), void 0)}), void 0)}, void 0);
@@ -23201,22 +23216,28 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React3 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-44856-5nknF8dFRvSj/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-47628-10mfuDGHDPlg/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
-  var css2 = `._right_1mzdy_1 {
+  var css2 = `._right_wub2u_1 {
   display: flex;
   justify-content: flex-end;
 }
 
-._grid_1mzdy_6 {
+._grid_wub2u_6 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
 }
 
-._tooltip_1mzdy_13 {
+._tooltip_wub2u_13 {
   color: #fff;
+}
+
+._centering_wub2u_17 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 `;
   (function() {
@@ -23227,7 +23248,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       document.head.appendChild(el);
     }
   })();
-  var app_module_css_default = {"right": "_right_1mzdy_1", "grid": "_grid_1mzdy_6", "tooltip": "_tooltip_1mzdy_13"};
+  var app_module_css_default = {"right": "_right_wub2u_1", "grid": "_grid_wub2u_6", "tooltip": "_tooltip_wub2u_13", "centering": "_centering_wub2u_17"};
 
   // src/app.tsx
   var ps = ["top", "left", "right", "bottom"];
@@ -23246,14 +23267,26 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       }, "Hello")
     }, "hover here")), /* @__PURE__ */ React3.createElement("div", {
       className: app_module_css_default.grid
-    }, new Array(10).fill(null).map((_, i) => /* @__PURE__ */ React3.createElement(import_react_tooltip_solid.TooltipListener, {
+    }, new Array(4).fill(null).map((_, i) => /* @__PURE__ */ React3.createElement(import_react_tooltip_solid.TooltipListener, {
       key: i,
       tooltip: /* @__PURE__ */ React3.createElement(import_react_tooltip_solid.Tooltip, {
         place: ps[i % 4],
         backgroundColor: "black",
         className: app_module_css_default.tooltip
       }, "Hello")
-    }, "hover here"))));
+    }, "hover here"))), /* @__PURE__ */ React3.createElement("div", {
+      className: app_module_css_default.grid
+    }, new Array(4).fill(null).map((_, i) => /* @__PURE__ */ React3.createElement("div", {
+      className: app_module_css_default.centering,
+      key: i
+    }, /* @__PURE__ */ React3.createElement(import_react_tooltip_solid.TooltipListener, {
+      tooltip: /* @__PURE__ */ React3.createElement(import_react_tooltip_solid.Tooltip, {
+        effect: "solid",
+        place: ps[i % 4],
+        backgroundColor: "blue",
+        className: app_module_css_default.tooltip
+      }, "Hello")
+    }, "hover here")))));
   };
   var domContainer = document.querySelector("#app");
   (0, import_react_dom.render)(React3.createElement(App), domContainer);

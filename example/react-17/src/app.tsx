@@ -31,7 +31,7 @@ const App: React.VoidFunctionComponent = () => {
         </TooltipListener>
       </div>
       <div className={styles.grid}>
-        {new Array(10).fill(null).map((_, i) => (
+        {new Array(4).fill(null).map((_, i) => (
           <TooltipListener
             key={i}
             tooltip={
@@ -46,6 +46,26 @@ const App: React.VoidFunctionComponent = () => {
           >
             hover here
           </TooltipListener>
+        ))}
+      </div>
+      <div className={styles.grid}>
+        {new Array(4).fill(null).map((_, i) => (
+          <div className={styles.centering} key={i}>
+            <TooltipListener
+              tooltip={
+                <Tooltip
+                  effect="solid"
+                  place={ps[i % 4]}
+                  backgroundColor="blue"
+                  className={styles.tooltip}
+                >
+                  Hello
+                </Tooltip>
+              }
+            >
+              hover here
+            </TooltipListener>
+          </div>
         ))}
       </div>
     </div>
