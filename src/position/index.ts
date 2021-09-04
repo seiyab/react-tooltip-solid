@@ -3,7 +3,7 @@ import { Place } from "src/position/place";
 
 type StylePosition = Pick<CSSProperties, "left" | "top">;
 
-type Position = [number, number];
+export type Position = [number, number];
 
 export function stylePosition([x, y]: Position): StylePosition {
   return {
@@ -12,14 +12,14 @@ export function stylePosition([x, y]: Position): StylePosition {
   };
 }
 
-export function calcStylePosition<Elem extends HTMLDivElement>(
-  target: [number, number],
-  tooltipElem: Elem | null,
+export function calcStylePosition(
+  target: Position,
+  tooltipRect: DOMRect | null,
   place: Place
 ): Position {
-  if (!tooltipElem) return [-1_000_000, -1_000_000];
+  if (!tooltipRect) return [-1_000_000, -1_000_000];
   const [x, y] = target;
-  const rect = tooltipElem.getBoundingClientRect();
+  const rect = tooltipRect;
 
   const gap = 10;
 
@@ -32,12 +32,12 @@ export function calcStylePosition<Elem extends HTMLDivElement>(
   return [x - rect.width / 2, y - rect.height - gap];
 }
 
-export function calcSolidPosition<Elem extends HTMLDivElement>(
-  listenerElem: Elem | null,
+export function calcSolidPosition(
+  listenerRect: DOMRect | null,
   place: Place
 ): Position {
-  if (!listenerElem) return [-1_000_000, -1_000_000];
-  const rect = listenerElem.getBoundingClientRect();
+  if (!listenerRect) return [-1_000_000, -1_000_000];
+  const rect = listenerRect;
   const gap = 5;
   if (place === "left") return [rect.left - gap, rect.top + rect.height / 2];
   if (place === "right") return [rect.right + gap, rect.top + rect.height / 2];

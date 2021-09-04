@@ -1,38 +1,30 @@
 import * as React from "react";
 
-import { useTooltip } from "src/hooks/useTooltip";
-import { Tooltip } from "src/Tooltip";
+import { TooltipContext } from "src/TooltipContext";
+import { useActive } from "./hooks/useActive";
 
 type Props = {
-  effect?: "float" | "solid";
-  place?: "top" | "left" | "bottom" | "right";
-  backgroundColor?: React.CSSProperties["backgroundColor"];
   tooltip: React.ReactChild;
 };
 
 const TooltipListener: React.FunctionComponent<Props> = ({
-  effect = "float",
-  place = "top",
-  backgroundColor = "white",
   tooltip,
   children,
 }) => {
-  const { active, listenerProps, tooltipProps } = useTooltip({
-    effect,
-    place,
-    backgroundColor,
-  });
+  const listenerRef = React.useRef<HTMLDivElement>(null);
+  const active = useActive(listenerRef.current);
   return (
-    <>
-      <div {...listenerProps}>{children}</div>
-      {active && (
-        <div {...tooltipProps}>
-          <Tooltip place={place} backgroundColor={backgroundColor}>
-            {tooltip}
-          </Tooltip>
-        </div>
-      )}
-    </>
+    <TooltipContext.Provider
+      value={{
+        listenerRef,
+        active,
+      }}
+    >
+      <div ref={listenerRef}>
+        {children}
+        {tooltip}
+      </div>
+    </TooltipContext.Provider>
   );
 };
 

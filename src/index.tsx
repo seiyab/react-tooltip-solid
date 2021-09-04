@@ -1,3 +1,4 @@
+import Tooltip from "./Tooltip";
 import TooltipListener from "./TooltipListener";
 
-export { TooltipListener };
+export { Tooltip, TooltipListener };
