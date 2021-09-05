@@ -68,6 +68,27 @@ const App: React.VoidFunctionComponent = () => {
           </div>
         ))}
       </div>
+      <div className={styles.grid}>
+        {new Array(4).fill(null).map((_, i) => (
+          <div className={styles.centering} key={i}>
+            <TooltipListener
+              event="click"
+              tooltip={
+                <Tooltip
+                  effect="solid"
+                  place={ps[i % 4]}
+                  backgroundColor="red"
+                  className={styles.tooltip}
+                >
+                  Hello
+                </Tooltip>
+              }
+            >
+              hover here
+            </TooltipListener>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

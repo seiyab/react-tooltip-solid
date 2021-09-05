@@ -34,9 +34,10 @@ export function calcStylePosition(
 
 export function calcFloatPosition(cursor: Position, place: Place): Position {
   const [x, y] = cursor;
-  if (place === Place.bottom) return [x, y + 13];
-  if (place === Place.right) return [x + 3, y];
-  return cursor;
+  if (place === Place.top) return [x, y - 2];
+  else if (place === Place.right) return [x + 5, y];
+  else if (place === Place.left) return [x - 2, y];
+  else return [x, y + 15]; // bottom
 }
 
 export function calcSolidPosition(

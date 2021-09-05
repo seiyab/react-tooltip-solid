@@ -1,6 +1,7 @@
 import { css, CSSObject } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
+import { useClientRect } from "src/hooks/useClientRect";
 import {
   calcFloatPosition,
   calcSolidPosition,
@@ -31,7 +32,7 @@ const Tooltip: React.FunctionComponent<Props> = ({
   backgroundColor = "white",
   children,
 }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const [rect, ref] = useClientRect<HTMLDivElement>();
   const context = React.useContext(TooltipContext);
   const [cursor, setCursor] = React.useState<[number, number]>([0, 0]);
   React.useEffect(() => {
@@ -43,6 +44,10 @@ const Tooltip: React.FunctionComponent<Props> = ({
     document.addEventListener("mousemove", followCursor);
     return () => document.removeEventListener("mousemove", followCursor);
   });
+  const stopPropagation = React.useCallback(
+    (e: React.MouseEvent) => e.stopPropagation(),
+    []
+  );
 
   const position = calcStylePosition(
     do_(() => {
@@ -52,13 +57,18 @@ const Tooltip: React.FunctionComponent<Props> = ({
         place
       );
     }),
-    ref.current?.getBoundingClientRect() ?? null,
+    rect,
     place
   );
   return (
     <>
       {context.active && (
-        <div className={css(wrapper)} style={stylePosition(position)} ref={ref}>
+        <div
+          className={css(wrapper)}
+          style={stylePosition(position)}
+          ref={ref}
+          onClick={stopPropagation}
+        >
           <SpeechBubble
             className={className}
             place={place}
