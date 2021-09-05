@@ -12,7 +12,7 @@ const TooltipListener: React.FunctionComponent<Props> = ({
   children,
 }) => {
   const listenerRef = React.useRef<HTMLDivElement>(null);
-  const active = useActive(listenerRef.current);
+  const { active, activate, deactivate } = useActive();
   return (
     <TooltipContext.Provider
       value={{
@@ -20,7 +20,7 @@ const TooltipListener: React.FunctionComponent<Props> = ({
         active,
       }}
     >
-      <div ref={listenerRef}>
+      <div ref={listenerRef} onMouseEnter={activate} onMouseLeave={deactivate}>
         {children}
         {tooltip}
       </div>

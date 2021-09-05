@@ -23130,17 +23130,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       Object.defineProperty(exports, "__esModule", {value: true});
       exports.useActive = void 0;
       var React4 = __importStar(require_react());
-      function useActive(listener) {
-        const [active, setActive] = React4.useState(true);
-        React4.useEffect(() => {
-          const updateActive = () => {
-            var _a;
-            setActive((_a = listener === null || listener === void 0 ? void 0 : listener.matches(":hover")) !== null && _a !== void 0 ? _a : false);
-          };
-          document.addEventListener("mousemove", updateActive);
-          return () => document.removeEventListener("mousemove", updateActive);
-        }, [listener]);
-        return active;
+      function useActive() {
+        const [active, setActive] = React4.useState(false);
+        return {
+          active,
+          activate: React4.useCallback(() => setActive(true), []),
+          deactivate: React4.useCallback(() => setActive(false), [])
+        };
       }
       exports.useActive = useActive;
     }
@@ -23185,11 +23181,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var useActive_1 = require_useActive();
       var TooltipListener2 = ({tooltip, children}) => {
         const listenerRef = React4.useRef(null);
-        const active = useActive_1.useActive(listenerRef.current);
+        const {active, activate, deactivate} = useActive_1.useActive();
         return jsx_runtime_1.jsx(TooltipContext_1.TooltipContext.Provider, Object.assign({value: {
           listenerRef,
           active
-        }}, {children: jsx_runtime_1.jsxs("div", Object.assign({ref: listenerRef}, {children: [children, tooltip]}), void 0)}), void 0);
+        }}, {children: jsx_runtime_1.jsxs("div", Object.assign({ref: listenerRef, onMouseEnter: activate, onMouseLeave: deactivate}, {children: [children, tooltip]}), void 0)}), void 0);
       };
       exports.default = TooltipListener2;
     }
@@ -23216,7 +23212,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React3 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-47628-10mfuDGHDPlg/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-10162-G2vM78L0AFuk/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
   var css2 = `._right_wub2u_1 {
   display: flex;

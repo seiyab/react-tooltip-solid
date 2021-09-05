@@ -1,14 +1,16 @@
 import * as React from "react";
 
-export function useActive(listener: HTMLDivElement | null): boolean {
-  const [active, setActive] = React.useState(true);
-  React.useEffect(() => {
-    const updateActive = () => {
-      setActive(listener?.matches(":hover") ?? false);
-    };
-    document.addEventListener("mousemove", updateActive);
-    return () => document.removeEventListener("mousemove", updateActive);
-  }, [listener]);
+type UseActiveResult = {
+  active: boolean;
+  activate: () => void;
+  deactivate: () => void;
+};
 
-  return active;
+export function useActive(): UseActiveResult {
+  const [active, setActive] = React.useState(false);
+  return {
+    active,
+    activate: React.useCallback(() => setActive(true), []),
+    deactivate: React.useCallback(() => setActive(false), []),
+  };
 }
