@@ -2,6 +2,7 @@ import { css, CSSObject } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 import { useClientRect } from "src/hooks/useClientRect";
+import { useRerender } from "src/hooks/useRerender";
 import {
   calcFloatPosition,
   calcSolidPosition,
@@ -18,6 +19,7 @@ type Props = {
   effect?: "float" | "solid";
   place?: Place;
   backgroundColor?: React.CSSProperties["backgroundColor"];
+  borderColor?: React.CSSProperties["borderColor"];
 };
 
 const wrapper: CSSObject = {
@@ -30,6 +32,7 @@ const Tooltip: React.FunctionComponent<Props> = ({
   effect = "float",
   place = Place.top,
   backgroundColor = "white",
+  borderColor,
   children,
 }) => {
   const [rect, ref] = useClientRect<HTMLDivElement>();
@@ -41,13 +44,18 @@ const Tooltip: React.FunctionComponent<Props> = ({
         setCursor([event.clientX, event.clientY]);
       }
     };
-    document.addEventListener("mousemove", followCursor);
-    return () => document.removeEventListener("mousemove", followCursor);
-  });
+    document.body.addEventListener("mousemove", followCursor);
+    return () => document.body.removeEventListener("mousemove", followCursor);
+  }, [context.active]);
   const stopPropagation = React.useCallback(
     (e: React.MouseEvent) => e.stopPropagation(),
     []
   );
+  const rerender = useRerender();
+  React.useEffect(() => {
+    document.addEventListener("scroll", rerender);
+    return () => document.removeEventListener("scroll", rerender);
+  }, [rerender]);
 
   const position = calcStylePosition(
     do_(() => {
@@ -73,6 +81,7 @@ const Tooltip: React.FunctionComponent<Props> = ({
             className={className}
             place={place}
             backgroundColor={backgroundColor}
+            borderColor={borderColor}
           >
             {children}
           </SpeechBubble>

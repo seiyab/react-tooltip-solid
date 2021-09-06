@@ -1,5 +1,4 @@
 import { css, CSSObject, cx } from "@emotion/css";
-import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 
 import { Place } from "src/position/place";
@@ -8,52 +7,94 @@ type Props = {
   className?: string;
   place: Place;
   backgroundColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
+  borderColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
 };
 
 export const Arrow: React.VoidFunctionComponent<Props> = ({
   className,
   place,
   backgroundColor,
+  borderColor,
 }) => {
-  const placeClass = do_(() => {
-    if (place === Place.top)
-      return css({
-        ...border,
-        borderTop: `${width} solid ${backgroundColor}`,
-        marginBottom: `-${width}`,
-      });
-    if (place === Place.left)
-      return css({
-        ...border,
-        borderLeft: `${width} solid ${backgroundColor}`,
-        marginRight: `-${width}`,
-      });
-    if (place === Place.right)
-      return css({
-        ...border,
-        borderRight: `${width} solid ${backgroundColor}`,
-        marginLeft: `-${width}`,
-      });
-    if (place === Place.bottom)
-      return css({
-        ...border,
-        borderBottom: `${width} solid ${backgroundColor}`,
-        marginTop: `-${width}`,
-      });
-  });
-  return <div className={cx(className, placeClass, commonClass)} />;
+  return (
+    <div className={cx(wrapperClass(place), className)}>
+      <div className={cx(placeClass(place, "7px", borderColor), commonClass)} />
+      <div
+        className={cx(
+          placeClass(place, "6px", backgroundColor),
+          commonClass,
+          css({ position: "absolute" })
+        )}
+      />
+    </div>
+  );
 };
 
-const width = "8px";
+function placeClass(place: Place, size: string, color: string): string {
+  const border: CSSObject = {
+    borderTop: `${size} solid transparent`,
+    borderBottom: `${size} solid transparent`,
+    borderLeft: `${size} solid transparent`,
+    borderRight: `${size} solid transparent`,
+  };
+  if (place === Place.top)
+    return css({
+      ...border,
+      borderTop: `${size} solid ${color}`,
+      marginBottom: `-${size}`,
+    });
+  else if (place === Place.left)
+    return css({
+      ...border,
+      borderLeft: `${size} solid ${color}`,
+      marginRight: `-${size}`,
+    });
+  else if (place === Place.right)
+    return css({
+      ...border,
+      borderRight: `${size} solid ${color}`,
+      marginLeft: `-${size}`,
+    });
+  else
+    return css({
+      ...border,
+      borderBottom: `${size} solid ${color}`,
+      marginTop: `-${size}`,
+    });
+}
+
+function wrapperClass(place: Place): string {
+  if (place === Place.top)
+    return css({
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "flex-start",
+    });
+  else if (place === Place.left)
+    return css({
+      position: "relative",
+      display: "flex",
+      justifyContent: "flex-start",
+      alignItems: "center",
+    });
+  else if (place === Place.right)
+    return css({
+      position: "relative",
+      display: "flex",
+      justifyContent: "flex-end",
+      alignItems: "center",
+    });
+  else
+    return css({
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "flex-end",
+    });
+}
 
 const commonClass = css({
   width: "0",
   height: "0",
 });
-
-const border: CSSObject = {
-  borderTop: `${width} solid transparent`,
-  borderBottom: `${width} solid transparent`,
-  borderLeft: `${width} solid transparent`,
-  borderRight: `${width} solid transparent`,
-};

@@ -77,8 +77,8 @@ const App: React.VoidFunctionComponent = () => {
                 <Tooltip
                   effect="solid"
                   place={ps[i % 4]}
-                  backgroundColor="red"
-                  className={styles.tooltip}
+                  backgroundColor="white"
+                  borderColor="red"
                 >
                   Hello
                 </Tooltip>
