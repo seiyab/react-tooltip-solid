@@ -40,13 +40,11 @@ const Tooltip: React.FunctionComponent<Props> = ({
   const [cursor, setCursor] = React.useState<[number, number]>([0, 0]);
   React.useEffect(() => {
     const followCursor = (event: DocumentEventMap["mousemove"]) => {
-      if (context.active) {
-        setCursor([event.clientX, event.clientY]);
-      }
+      setCursor([event.clientX, event.clientY]);
     };
     document.body.addEventListener("mousemove", followCursor);
     return () => document.body.removeEventListener("mousemove", followCursor);
-  }, [context.active]);
+  }, []);
   const stopPropagation = React.useCallback(
     (e: React.MouseEvent) => e.stopPropagation(),
     []
