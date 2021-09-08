@@ -4,92 +4,69 @@ import * as React from "react";
 import { Tooltip, TooltipListener } from "react-tooltip-solid";
 
 import styles from "./app.module.css";
+import { ButtonGroup } from "./ButtonGroup";
 
-const ps = ["top", "left", "right", "bottom"] as const;
+const places = [
+  { value: "top", label: "Top" },
+  { value: "bottom", label: "Bottom" },
+  { value: "left", label: "Left" },
+  { value: "right", label: "Right" },
+] as const;
+type Place = typeof places[number]["value"];
+
+const events = [
+  { value: "hover", label: "Hover" },
+  { value: "click", label: "Click" },
+] as const;
 
 const App: React.VoidFunctionComponent = () => {
+  const [event, setEvent] = React.useState<"click" | "hover">("hover");
+  const [place, setPlace] = React.useState<Place>("top");
   return (
-    <div>
-      <TooltipListener
-        tooltip={
-          <Tooltip className={styles.tooltip} backgroundColor="red">
-            Hello
-          </Tooltip>
-        }
-      >
-        hover here
-      </TooltipListener>
-      <div className={styles.right}>
-        <TooltipListener
-          tooltip={
-            <Tooltip className={styles.tooltip} backgroundColor="red">
-              Hello
-            </Tooltip>
-          }
-        >
-          hover here
-        </TooltipListener>
-      </div>
-      <div className={styles.grid}>
-        {new Array(4).fill(null).map((_, i) => (
-          <TooltipListener
-            key={i}
-            tooltip={
-              <Tooltip
-                place={ps[i % 4]}
-                backgroundColor="black"
-                className={styles.tooltip}
-              >
-                Hello
-              </Tooltip>
-            }
-          >
-            hover here
-          </TooltipListener>
-        ))}
-      </div>
-      <div className={styles.grid}>
-        {new Array(4).fill(null).map((_, i) => (
-          <div className={styles.centering} key={i}>
+    <main className={styles.wrapper}>
+      <div className={styles.content}>
+        <h1>Tooltip Example</h1>
+        <section>
+          <div className={styles.displayContainer}>
             <TooltipListener
+              event={event}
+              className={styles.dynamicDisplay}
               tooltip={
                 <Tooltip
-                  effect="solid"
-                  place={ps[i % 4]}
-                  backgroundColor="blue"
                   className={styles.tooltip}
+                  place={place}
+                  backgroundColor="black"
                 >
                   Hello
                 </Tooltip>
               }
             >
-              hover here
+              <span>Hover here</span>
             </TooltipListener>
           </div>
-        ))}
-      </div>
-      <div className={styles.grid}>
-        {new Array(4).fill(null).map((_, i) => (
-          <div className={styles.centering} key={i}>
-            <TooltipListener
-              event="click"
-              tooltip={
-                <Tooltip
-                  effect="solid"
-                  place={ps[i % 4]}
-                  backgroundColor="white"
-                  borderColor="red"
-                >
-                  Hello
-                </Tooltip>
-              }
-            >
-              hover here
-            </TooltipListener>
+          <div className={styles.controls}>
+            <div className={styles.controlSwitch}>
+              <span>Event:</span>
+              <ButtonGroup<"click" | "hover">
+                className={styles.switch}
+                value={event}
+                onSelect={setEvent}
+                items={events}
+              />
+            </div>
+            <div className={styles.controlSwitch}>
+              <span>Place:</span>
+              <ButtonGroup<Place>
+                className={styles.switch}
+                value={place}
+                onSelect={setPlace}
+                items={places}
+              />
+            </div>
           </div>
-        ))}
+        </section>
       </div>
-    </div>
+    </main>
   );
 };
 

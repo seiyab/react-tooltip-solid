@@ -1,21 +1,44 @@
-.right {
+.wrapper {
+  font-family: sans-serif;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+.content {
+  max-width: 800px;
+}
+
+.display-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.dynamic-display {
+  padding: 20px;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgreen;
 }
 
 .tooltip {
-  color: #fff;
+  color: white;
 }
 
-.centering {
+.controls {
+  margin-top: 30px;
+}
+
+.control-switch {
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.control-switch + .control-switch {
+  margin-top: 7px;
+}
+
+.switch {
+  margin-left: 5px;
 }

@@ -5,11 +5,13 @@ import { TooltipContext } from "src/TooltipContext";
 import { useActive } from "./hooks/useActive";
 
 type Props = {
+  className?: string;
   tooltip: React.ReactChild;
   event?: TooltipEvent;
 };
 
 const TooltipListener: React.FunctionComponent<Props> = ({
+  className,
   tooltip,
   event = TooltipEvent.Hover,
   children,
@@ -23,7 +25,7 @@ const TooltipListener: React.FunctionComponent<Props> = ({
         active,
       }}
     >
-      <div ref={listenerRef} {...handlers}>
+      <div ref={listenerRef} className={className} {...handlers}>
         {children}
         {tooltip}
       </div>

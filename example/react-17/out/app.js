@@ -505,7 +505,7 @@
             }
             return element;
           };
-          function createElement3(type, config, children) {
+          function createElement4(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -1051,7 +1051,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState2(initialState) {
+          function useState3(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1553,7 +1553,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement3.apply(this, arguments);
+            var element = createElement4.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1639,7 +1639,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer2;
           exports.useRef = useRef;
-          exports.useState = useState2;
+          exports.useState = useState3;
           exports.version = ReactVersion;
         })();
       }
@@ -2447,11 +2447,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React6 = require_react();
+          var React7 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2483,7 +2483,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React6) {
+          if (!React7) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3699,7 +3699,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React6.Children.forEach(children, function(child) {
+            React7.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3710,7 +3710,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React6.Children.forEach(props.children, function(child) {
+                React7.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8464,7 +8464,7 @@
               }
             }
           }
-          function createElement3(type, props, rootContainerElement, parentNamespace) {
+          function createElement4(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9341,7 +9341,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement3(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement4(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10903,7 +10903,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React6.Component().refs;
+          var emptyRefsObject = new React7.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -20433,7 +20433,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React6 = require_react();
+          var React7 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -20490,7 +20490,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React6.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -22610,9 +22610,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       "use strict";
       Object.defineProperty(exports, "__esModule", {value: true});
       var isBrowser = true;
-      function getRegisteredStyles(registered, registeredStyles, classNames) {
+      function getRegisteredStyles(registered, registeredStyles, classNames2) {
         var rawClassName = "";
-        classNames.split(" ").forEach(function(className) {
+        classNames2.split(" ").forEach(function(className) {
           if (registered[className] !== void 0) {
             registeredStyles.push(registered[className] + ";");
           } else {
@@ -22656,13 +22656,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           return cache.insert("", serialized, cache.sheet, true);
         }
       }
-      function merge(registered, css3, className) {
+      function merge(registered, css4, className) {
         var registeredStyles = [];
         var rawClassName = utils.getRegisteredStyles(registered, registeredStyles, className);
         if (registeredStyles.length < 2) {
           return className;
         }
-        return rawClassName + css3(registeredStyles);
+        return rawClassName + css4(registeredStyles);
       }
       var createEmotion = function createEmotion2(options) {
         var cache = createCache__default["default"](options);
@@ -22673,7 +22673,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           this.isSpeedy = value;
         };
         cache.compat = true;
-        var css3 = function css4() {
+        var css4 = function css5() {
           for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
           }
@@ -22704,10 +22704,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
             args[_key4] = arguments[_key4];
           }
-          return merge(cache.registered, css3, classnames(args));
+          return merge(cache.registered, css4, classnames(args));
         };
         return {
-          css: css3,
+          css: css4,
           cx: cx2,
           injectGlobal,
           keyframes,
@@ -22724,7 +22724,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           sheet: cache.sheet,
           cache,
           getRegisteredStyles: utils.getRegisteredStyles.bind(null, cache.registered),
-          merge: merge.bind(null, cache.registered, css3)
+          merge: merge.bind(null, cache.registered, css4)
         };
       };
       var classnames = function classnames2(args) {
@@ -22785,11 +22785,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var getRegisteredStyles = _createEmotion.getRegisteredStyles;
       var injectGlobal = _createEmotion.injectGlobal;
       var keyframes = _createEmotion.keyframes;
-      var css3 = _createEmotion.css;
+      var css4 = _createEmotion.css;
       var sheet = _createEmotion.sheet;
       var cache = _createEmotion.cache;
       exports.cache = cache;
-      exports.css = css3;
+      exports.css = css4;
       exports.cx = cx2;
       exports.flush = flush;
       exports.getRegisteredStyles = getRegisteredStyles;
@@ -23147,7 +23147,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var jsx_runtime_1 = require_jsx_runtime();
       var css_1 = require_emotion_css_cjs();
       var do_expr_1 = require_lib();
-      var React6 = __importStar(require_react());
+      var React7 = __importStar(require_react());
       var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
       var useRerender_1 = (init_useRerender(), useRerender_exports);
       var position_1 = (init_position(), position_exports);
@@ -23160,9 +23160,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       };
       var Tooltip2 = ({className, effect = "float", place = place_1.Place.top, backgroundColor = "white", borderColor, children}) => {
         const [rect, ref] = useClientRect_1.useClientRect();
-        const context = React6.useContext(TooltipContext_1.TooltipContext);
-        const [cursor, setCursor] = React6.useState([0, 0]);
-        React6.useEffect(() => {
+        const context = React7.useContext(TooltipContext_1.TooltipContext);
+        const [cursor, setCursor] = React7.useState([0, 0]);
+        React7.useEffect(() => {
           const followCursor = (event) => {
             if (context.active) {
               setCursor([event.clientX, event.clientY]);
@@ -23171,9 +23171,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           document.body.addEventListener("mousemove", followCursor);
           return () => document.body.removeEventListener("mousemove", followCursor);
         }, [context.active]);
-        const stopPropagation = React6.useCallback((e) => e.stopPropagation(), []);
+        const stopPropagation = React7.useCallback((e) => e.stopPropagation(), []);
         const rerender = useRerender_1.useRerender();
-        React6.useEffect(() => {
+        React7.useEffect(() => {
           document.addEventListener("scroll", rerender);
           return () => document.removeEventListener("scroll", rerender);
         }, [rerender]);
@@ -23238,15 +23238,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       };
       Object.defineProperty(exports, "__esModule", {value: true});
       exports.useActive = void 0;
-      var React6 = __importStar(require_react());
+      var React7 = __importStar(require_react());
       var options_1 = (init_options(), options_exports);
       var noop = () => {
       };
       function useActive(option) {
-        const [active, setActive] = React6.useState(false);
-        const activate = React6.useCallback(() => setActive(true), []);
-        const deactivate = React6.useCallback(() => setActive(false), []);
-        const toggle = React6.useCallback(() => setActive((prev) => !prev), []);
+        const [active, setActive] = React7.useState(false);
+        const activate = React7.useCallback(() => setActive(true), []);
+        const deactivate = React7.useCallback(() => setActive(false), []);
+        const toggle = React7.useCallback(() => setActive((prev) => !prev), []);
         return {
           active,
           handlers: {
@@ -23294,17 +23294,17 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       };
       Object.defineProperty(exports, "__esModule", {value: true});
       var jsx_runtime_1 = require_jsx_runtime();
-      var React6 = __importStar(require_react());
+      var React7 = __importStar(require_react());
       var options_1 = (init_options(), options_exports);
       var TooltipContext_1 = (init_TooltipContext(), TooltipContext_exports);
       var useActive_1 = require_useActive();
-      var TooltipListener2 = ({tooltip, event = options_1.TooltipEvent.Hover, children}) => {
-        const listenerRef = React6.useRef(null);
+      var TooltipListener2 = ({className, tooltip, event = options_1.TooltipEvent.Hover, children}) => {
+        const listenerRef = React7.useRef(null);
         const {active, handlers} = useActive_1.useActive({event});
         return jsx_runtime_1.jsx(TooltipContext_1.TooltipContext.Provider, Object.assign({value: {
           listenerRef,
           active
-        }}, {children: jsx_runtime_1.jsxs("div", Object.assign({ref: listenerRef}, handlers, {children: [children, tooltip]}), void 0)}), void 0);
+        }}, {children: jsx_runtime_1.jsxs("div", Object.assign({ref: listenerRef, className}, handlers, {children: [children, tooltip]}), void 0)}), void 0);
       };
       exports.default = TooltipListener2;
     }
@@ -23326,33 +23326,106 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
+  // node_modules/classnames/index.js
+  var require_classnames = __commonJS({
+    "node_modules/classnames/index.js"(exports, module) {
+      (function() {
+        "use strict";
+        var hasOwn = {}.hasOwnProperty;
+        function classNames2() {
+          var classes = [];
+          for (var i = 0; i < arguments.length; i++) {
+            var arg = arguments[i];
+            if (!arg)
+              continue;
+            var argType = typeof arg;
+            if (argType === "string" || argType === "number") {
+              classes.push(arg);
+            } else if (Array.isArray(arg)) {
+              if (arg.length) {
+                var inner = classNames2.apply(null, arg);
+                if (inner) {
+                  classes.push(inner);
+                }
+              }
+            } else if (argType === "object") {
+              if (arg.toString === Object.prototype.toString) {
+                for (var key in arg) {
+                  if (hasOwn.call(arg, key) && arg[key]) {
+                    classes.push(key);
+                  }
+                }
+              } else {
+                classes.push(arg.toString());
+              }
+            }
+          }
+          return classes.join(" ");
+        }
+        if (typeof module !== "undefined" && module.exports) {
+          classNames2.default = classNames2;
+          module.exports = classNames2;
+        } else if (typeof define === "function" && typeof define.amd === "object" && define.amd) {
+          define("classnames", [], function() {
+            return classNames2;
+          });
+        } else {
+          window.classNames = classNames2;
+        }
+      })();
+    }
+  });
+
   // src/app.tsx
   var import_react_dom = __toModule(require_react_dom());
-  var React5 = __toModule(require_react());
+  var React6 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-20999-KUldHOxnnW78/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-28997-Ora9wjaiECYo/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
-  var css2 = `._right_wub2u_1 {
+  var css2 = `._wrapper_1rmkf_1 {
+  font-family: sans-serif;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
-._grid_wub2u_6 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+._content_1rmkf_7 {
+  max-width: 800px;
 }
 
-._tooltip_wub2u_13 {
-  color: #fff;
+._display-container_1rmkf_11 {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
 }
 
-._centering_wub2u_17 {
+._dynamic-display_1rmkf_17 {
+  padding: 20px;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgreen;
+}
+
+._tooltip_1rmkf_25 {
+  color: white;
+}
+
+._controls_1rmkf_29 {
+  margin-top: 30px;
+}
+
+._control-switch_1rmkf_33 {
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+._control-switch_1rmkf_33 + ._control-switch_1rmkf_33 {
+  margin-top: 7px;
+}
+
+._switch_1rmkf_42 {
+  margin-left: 5px;
 }
 `;
   (function() {
@@ -23363,66 +23436,133 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       document.head.appendChild(el);
     }
   })();
-  var app_module_css_default = {"right": "_right_wub2u_1", "grid": "_grid_wub2u_6", "tooltip": "_tooltip_wub2u_13", "centering": "_centering_wub2u_17"};
+  var app_module_css_default = {"wrapper": "_wrapper_1rmkf_1", "content": "_content_1rmkf_7", "displayContainer": "_display-container_1rmkf_11", "dynamicDisplay": "_dynamic-display_1rmkf_17", "tooltip": "_tooltip_1rmkf_25", "controls": "_controls_1rmkf_29", "controlSwitch": "_control-switch_1rmkf_33", "switch": "_switch_1rmkf_42"};
+
+  // src/ButtonGroup/index.tsx
+  var import_classnames = __toModule(require_classnames());
+  var React5 = __toModule(require_react());
+
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-28997-Ora9wjaiECYo/react-17/src/ButtonGroup/styles.module.css.js
+  var digest2 = "9fe92018ee23dd2219d2cbdd4c73747c7a29b94a1cdaf80f8e3266a056f0e7e0";
+  var css3 = `._wrapper_1yzde_1 {
+  display: flex;
+}
+
+._button-group_1yzde_5 {
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgreen;
+  padding: 2px;
+}
+
+._button-item_1yzde_13 {
+  border-radius: 2px;
+  border-style: none;
+  background-color: transparent;
+  color: darkgreen;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+._button-item_1yzde_13 + ._button-item_1yzde_13{
+  margin-left: 3px;
+}
+
+._button-item-selected_1yzde_26 {
+  background-color: darkgreen;
+  color: honeydew;
+  cursor: default;
+}
+`;
+  (function() {
+    if (!document.getElementById(digest2)) {
+      var el = document.createElement("style");
+      el.id = digest2;
+      el.textContent = css3;
+      document.head.appendChild(el);
+    }
+  })();
+  var styles_module_css_default = {"wrapper": "_wrapper_1yzde_1", "buttonGroup": "_button-group_1yzde_5", "buttonItem": "_button-item_1yzde_13", "buttonItemSelected": "_button-item-selected_1yzde_26"};
+
+  // src/ButtonGroup/index.tsx
+  var ButtonGroup = ({
+    className,
+    value,
+    onSelect,
+    items
+  }) => {
+    return /* @__PURE__ */ React5.createElement("div", {
+      className: (0, import_classnames.default)(styles_module_css_default.wrapper, className)
+    }, /* @__PURE__ */ React5.createElement("div", {
+      className: styles_module_css_default.buttonGroup
+    }, items.map((item) => /* @__PURE__ */ React5.createElement("button", {
+      type: "button",
+      className: (0, import_classnames.default)(styles_module_css_default.buttonItem, {
+        [styles_module_css_default.buttonItemSelected]: value === item.value
+      }),
+      onClick: () => onSelect(item.value)
+    }, item.label))));
+  };
 
   // src/app.tsx
-  var ps = ["top", "left", "right", "bottom"];
+  var places = [
+    {value: "top", label: "Top"},
+    {value: "bottom", label: "Bottom"},
+    {value: "left", label: "Left"},
+    {value: "right", label: "Right"}
+  ];
+  var events = [
+    {value: "hover", label: "Hover"},
+    {value: "click", label: "Click"}
+  ];
   var App = () => {
-    return /* @__PURE__ */ React5.createElement("div", null, /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.TooltipListener, {
-      tooltip: /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.Tooltip, {
+    const [event, setEvent] = React6.useState("hover");
+    const [place, setPlace] = React6.useState("top");
+    return /* @__PURE__ */ React6.createElement("main", {
+      className: app_module_css_default.wrapper
+    }, /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.content
+    }, /* @__PURE__ */ React6.createElement("h1", null, "Tooltip Example"), /* @__PURE__ */ React6.createElement("section", null, /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.displayContainer
+    }, /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.TooltipListener, {
+      event,
+      className: app_module_css_default.dynamicDisplay,
+      tooltip: /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.Tooltip, {
         className: app_module_css_default.tooltip,
-        backgroundColor: "red"
+        place,
+        backgroundColor: "black"
       }, "Hello")
-    }, "hover here"), /* @__PURE__ */ React5.createElement("div", {
-      className: app_module_css_default.right
-    }, /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.TooltipListener, {
-      tooltip: /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.Tooltip, {
-        className: app_module_css_default.tooltip,
-        backgroundColor: "red"
-      }, "Hello")
-    }, "hover here")), /* @__PURE__ */ React5.createElement("div", {
-      className: app_module_css_default.grid
-    }, new Array(4).fill(null).map((_, i) => /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.TooltipListener, {
-      key: i,
-      tooltip: /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.Tooltip, {
-        place: ps[i % 4],
-        backgroundColor: "black",
-        className: app_module_css_default.tooltip
-      }, "Hello")
-    }, "hover here"))), /* @__PURE__ */ React5.createElement("div", {
-      className: app_module_css_default.grid
-    }, new Array(4).fill(null).map((_, i) => /* @__PURE__ */ React5.createElement("div", {
-      className: app_module_css_default.centering,
-      key: i
-    }, /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.TooltipListener, {
-      tooltip: /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.Tooltip, {
-        effect: "solid",
-        place: ps[i % 4],
-        backgroundColor: "blue",
-        className: app_module_css_default.tooltip
-      }, "Hello")
-    }, "hover here")))), /* @__PURE__ */ React5.createElement("div", {
-      className: app_module_css_default.grid
-    }, new Array(4).fill(null).map((_, i) => /* @__PURE__ */ React5.createElement("div", {
-      className: app_module_css_default.centering,
-      key: i
-    }, /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.TooltipListener, {
-      event: "click",
-      tooltip: /* @__PURE__ */ React5.createElement(import_react_tooltip_solid.Tooltip, {
-        effect: "solid",
-        place: ps[i % 4],
-        backgroundColor: "white",
-        borderColor: "red"
-      }, "Hello")
-    }, "hover here")))));
+    }, /* @__PURE__ */ React6.createElement("span", null, "Hover here"))), /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.controls
+    }, /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.controlSwitch
+    }, /* @__PURE__ */ React6.createElement("span", null, "Event:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+      className: app_module_css_default.switch,
+      value: event,
+      onSelect: setEvent,
+      items: events
+    })), /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.controlSwitch
+    }, /* @__PURE__ */ React6.createElement("span", null, "Place:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+      className: app_module_css_default.switch,
+      value: place,
+      onSelect: setPlace,
+      items: places
+    }))))));
   };
   var domContainer = document.querySelector("#app");
-  (0, import_react_dom.render)(React5.createElement(App), domContainer);
+  (0, import_react_dom.render)(React6.createElement(App), domContainer);
 })();
 /*
 object-assign
 (c) Sindre Sorhus
 @license MIT
+*/
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
 */
 /**
  * Checks if an event is supported in the current execution environment.

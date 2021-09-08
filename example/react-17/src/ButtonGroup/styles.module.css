@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+}
+
+.button-group {
+  border-radius: 2px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: darkgreen;
+  padding: 2px;
+}
+
+.button-item {
+  border-radius: 2px;
+  border-style: none;
+  background-color: transparent;
+  color: darkgreen;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.button-item + .button-item{
+  margin-left: 3px;
+}
+
+.button-item-selected {
+  background-color: darkgreen;
+  color: honeydew;
+  cursor: default;
+}
