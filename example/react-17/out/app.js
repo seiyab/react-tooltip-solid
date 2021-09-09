@@ -10836,11 +10836,11 @@
                   var callback = update.callback;
                   if (callback !== null) {
                     workInProgress2.flags |= Callback;
-                    var effects = queue.effects;
-                    if (effects === null) {
+                    var effects2 = queue.effects;
+                    if (effects2 === null) {
                       queue.effects = [update];
                     } else {
-                      effects.push(update);
+                      effects2.push(update);
                     }
                   }
                 }
@@ -10888,11 +10888,11 @@
             return hasForceUpdate;
           }
           function commitUpdateQueue(finishedWork, finishedQueue, instance) {
-            var effects = finishedQueue.effects;
+            var effects2 = finishedQueue.effects;
             finishedQueue.effects = null;
-            if (effects !== null) {
-              for (var i = 0; i < effects.length; i++) {
-                var effect = effects[i];
+            if (effects2 !== null) {
+              for (var i = 0; i < effects2.length; i++) {
+                var effect = effects2[i];
                 var callback = effect.callback;
                 if (callback !== null) {
                   effect.callback = null;
@@ -22019,14 +22019,14 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       var last = function last2(arr) {
         return arr.length ? arr[arr.length - 1] : null;
       };
-      var toRules = function toRules2(parsed, points) {
+      var toRules = function toRules2(parsed, points2) {
         var index = -1;
         var character = 44;
         do {
           switch (stylis.token(character)) {
             case 0:
               if (character === 38 && stylis.peek() === 12) {
-                points[index] = 1;
+                points2[index] = 1;
               }
               parsed[index] += stylis.identifier(stylis.position - 1);
               break;
@@ -22036,7 +22036,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             case 4:
               if (character === 44) {
                 parsed[++index] = stylis.peek() === 58 ? "&\f" : "";
-                points[index] = parsed[index].length;
+                points2[index] = parsed[index].length;
                 break;
               }
             default:
@@ -22045,8 +22045,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         } while (character = stylis.next());
         return parsed;
       };
-      var getRules = function getRules2(value, points) {
-        return stylis.dealloc(toRules(stylis.alloc(value), points));
+      var getRules = function getRules2(value, points2) {
+        return stylis.dealloc(toRules(stylis.alloc(value), points2));
       };
       var fixedElements = /* @__PURE__ */ new WeakMap();
       var compat = function compat2(element) {
@@ -22067,12 +22067,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return;
         }
         fixedElements.set(element, true);
-        var points = [];
-        var rules = getRules(value, points);
+        var points2 = [];
+        var rules = getRules(value, points2);
         var parentRules = parent.props;
         for (var i = 0, k = 0; i < rules.length; i++) {
           for (var j = 0; j < parentRules.length; j++, k++) {
-            element.props[k] = points[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
+            element.props[k] = points2[i] ? rules[i].replace(/&\f/g, parentRules[j]) : parentRules[j] + " " + rules[i];
           }
         }
       };
@@ -22830,13 +22830,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     useClientRect: () => useClientRect
   });
   function useClientRect() {
-    const [rect, setRect] = React.useState(null);
+    const [rect2, setRect] = React.useState(null);
     const ref = React.useCallback((node) => {
       if (node !== null) {
         setRect(node.getBoundingClientRect());
       }
     }, []);
-    return [rect, ref];
+    return [rect2, ref];
   }
   var React;
   var init_useClientRect = __esm({
@@ -22895,15 +22895,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     if (!tooltipRect)
       return [-1e6, -1e6];
     const [x, y] = target;
-    const rect = tooltipRect;
+    const rect2 = tooltipRect;
     const gap = 5;
     if (place === "left")
-      return [x - rect.width - gap, y - rect.height / 2];
+      return [x - rect2.width - gap, y - rect2.height / 2];
     if (place === "right")
-      return [x + gap, y - rect.height / 2];
+      return [x + gap, y - rect2.height / 2];
     if (place === "bottom")
-      return [x - rect.width / 2, y + gap];
-    return [x - rect.width / 2, y - rect.height - gap];
+      return [x - rect2.width / 2, y + gap];
+    return [x - rect2.width / 2, y - rect2.height - gap];
   }
   function calcFloatPosition(cursor, place) {
     const [x, y] = cursor;
@@ -22919,15 +22919,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   function calcSolidPosition(listenerRect, place) {
     if (!listenerRect)
       return [-1e6, -1e6];
-    const rect = listenerRect;
+    const rect2 = listenerRect;
     const gap = 0;
     if (place === "left")
-      return [rect.left - gap, rect.top + rect.height / 2];
+      return [rect2.left - gap, rect2.top + rect2.height / 2];
     if (place === "right")
-      return [rect.right + gap, rect.top + rect.height / 2];
+      return [rect2.right + gap, rect2.top + rect2.height / 2];
     if (place === "bottom")
-      return [rect.left + rect.width / 2, rect.bottom + gap];
-    return [rect.left + rect.width / 2, rect.top - gap];
+      return [rect2.left + rect2.width / 2, rect2.bottom + gap];
+    return [rect2.left + rect2.width / 2, rect2.top - gap];
   }
   var init_position = __esm({
     "../../src/position/index.ts"() {
@@ -22956,37 +22956,28 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   __export(Arrow_exports, {
     Arrow: () => Arrow
   });
-  function placeClass(place, size, color) {
-    const border = {
-      borderTop: `${size} solid transparent`,
-      borderBottom: `${size} solid transparent`,
-      borderLeft: `${size} solid transparent`,
-      borderRight: `${size} solid transparent`
+  function rect(place) {
+    const size = 14;
+    if (place === Place.top || place === Place.bottom)
+      return {
+        width: size,
+        height: size / 2
+      };
+    return {
+      width: size / 2,
+      height: size
     };
+  }
+  function points(place) {
+    const {width, height} = rect(place);
     if (place === Place.top)
-      return (0, import_css.css)({
-        ...border,
-        borderTop: `${size} solid ${color}`,
-        marginBottom: `-${size}`
-      });
+      return `0,0 ${width / 2},${height} ${width},0`;
     else if (place === Place.left)
-      return (0, import_css.css)({
-        ...border,
-        borderLeft: `${size} solid ${color}`,
-        marginRight: `-${size}`
-      });
+      return `0,0 ${width},${height / 2} 0,${height}`;
     else if (place === Place.right)
-      return (0, import_css.css)({
-        ...border,
-        borderRight: `${size} solid ${color}`,
-        marginLeft: `-${size}`
-      });
+      return `${width},0 0,${height / 2} ${width},${height}`;
     else
-      return (0, import_css.css)({
-        ...border,
-        borderBottom: `${size} solid ${color}`,
-        marginTop: `-${size}`
-      });
+      return `0,${height}, ${width / 2},0 ${width},${height}`;
   }
   function wrapperClass(place) {
     if (place === Place.top)
@@ -23018,7 +23009,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         alignItems: "flex-end"
       });
   }
-  var import_css, React4, Arrow, commonClass;
+  var import_css, React4, Arrow;
   var init_Arrow = __esm({
     "../../src/Tooltip/Arrow/index.tsx"() {
       import_css = __toModule(require_emotion_css_cjs());
@@ -23030,18 +23021,21 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         backgroundColor,
         borderColor
       }) => {
+        const {width, height} = rect(place);
+        const bound = (0, import_css.css)({
+          width: `${width}px`,
+          height: `${height}px`
+        });
         return /* @__PURE__ */ React4.createElement("div", {
-          className: (0, import_css.cx)(wrapperClass(place), className)
-        }, /* @__PURE__ */ React4.createElement("div", {
-          className: (0, import_css.cx)(placeClass(place, "7px", borderColor), commonClass)
-        }), /* @__PURE__ */ React4.createElement("div", {
-          className: (0, import_css.cx)(placeClass(place, "6px", backgroundColor), commonClass, (0, import_css.css)({position: "absolute"}))
-        }));
+          className: (0, import_css.cx)(wrapperClass(place), bound, className)
+        }, /* @__PURE__ */ React4.createElement("svg", {
+          viewBox: `0 0 ${width} ${height}`
+        }, /* @__PURE__ */ React4.createElement("polyline", {
+          fill: backgroundColor,
+          stroke: borderColor,
+          points: points(place)
+        })));
       };
-      commonClass = (0, import_css.css)({
-        width: "0",
-        height: "0"
-      });
     }
   });
 
@@ -23159,7 +23153,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         zIndex: 999
       };
       var Tooltip2 = ({className, effect = "float", place = place_1.Place.top, backgroundColor = "white", borderColor, children}) => {
-        const [rect, ref] = useClientRect_1.useClientRect();
+        const [rect2, ref] = useClientRect_1.useClientRect();
         const context = React7.useContext(TooltipContext_1.TooltipContext);
         const [cursor, setCursor] = React7.useState([0, 0]);
         React7.useEffect(() => {
@@ -23180,7 +23174,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           if (effect === "float")
             return position_1.calcFloatPosition(cursor, place);
           return position_1.calcSolidPosition((_b = (_a = context.listenerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, place);
-        }), rect, place);
+        }), rect2, place);
         return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, {children: context.active && jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper), style: position_1.stylePosition(position), ref, onClick: stopPropagation}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, place, backgroundColor, borderColor}, {children}), void 0)}), void 0)}, void 0);
       };
       exports.default = Tooltip2;
@@ -23379,7 +23373,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React6 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-29748-J5q43drtVMCy/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-33885-1vG2aaQBabsj/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
   var css2 = `._wrapper_1rmkf_1 {
   font-family: sans-serif;
@@ -23440,7 +23434,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var import_classnames = __toModule(require_classnames());
   var React5 = __toModule(require_react());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-29748-J5q43drtVMCy/react-17/src/ButtonGroup/styles.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-33885-1vG2aaQBabsj/react-17/src/ButtonGroup/styles.module.css.js
   var digest2 = "9fe92018ee23dd2219d2cbdd4c73747c7a29b94a1cdaf80f8e3266a056f0e7e0";
   var css3 = `._wrapper_1yzde_1 {
   display: flex;
@@ -23495,6 +23489,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }, /* @__PURE__ */ React5.createElement("div", {
       className: styles_module_css_default.buttonGroup
     }, items.map((item) => /* @__PURE__ */ React5.createElement("button", {
+      key: item.value,
       type: "button",
       className: (0, import_classnames.default)(styles_module_css_default.buttonItem, {
         [styles_module_css_default.buttonItemSelected]: value === item.value
@@ -23514,9 +23509,27 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     {value: "hover", label: "Hover"},
     {value: "click", label: "Click"}
   ];
+  var effects = [
+    {value: "float", label: "Float"},
+    {value: "solid", label: "Solid"}
+  ];
+  var backgroundColors = [
+    {value: "black", label: "Black"},
+    {value: "darkgreen", label: "Darkgreen"},
+    {value: "darkblue", label: "Darkblue"}
+  ];
+  var borderColors = [
+    {value: "transparent", label: "Transparent"},
+    {value: "blue", label: "Blue"},
+    {value: "red", label: "Red"}
+  ];
   var App = () => {
+    var _a;
     const [event, setEvent] = React6.useState("hover");
     const [place, setPlace] = React6.useState("top");
+    const [effect, setEffect] = React6.useState("float");
+    const [backgroundColor, setBackgroundColor] = React6.useState("black");
+    const [borderColor, setBorderColor] = React6.useState("transparent");
     return /* @__PURE__ */ React6.createElement("main", {
       className: app_module_css_default.wrapper
     }, /* @__PURE__ */ React6.createElement("div", {
@@ -23529,9 +23542,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       tooltip: /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.Tooltip, {
         className: app_module_css_default.tooltip,
         place,
-        backgroundColor: "black"
+        effect,
+        backgroundColor,
+        borderColor
       }, "Hello")
-    }, /* @__PURE__ */ React6.createElement("span", null, "Hover here"))), /* @__PURE__ */ React6.createElement("div", {
+    }, /* @__PURE__ */ React6.createElement("span", null, (_a = events.find(({value}) => value === event)) == null ? void 0 : _a.label, " here"))), /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controls
     }, /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controlSwitch
@@ -23547,6 +23562,27 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       value: place,
       onSelect: setPlace,
       items: places
+    })), /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.controlSwitch
+    }, /* @__PURE__ */ React6.createElement("span", null, "Effect:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+      className: app_module_css_default.switch,
+      value: effect,
+      onSelect: setEffect,
+      items: effects
+    })), /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.controlSwitch
+    }, /* @__PURE__ */ React6.createElement("span", null, "Background Color:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+      className: app_module_css_default.switch,
+      value: backgroundColor,
+      onSelect: setBackgroundColor,
+      items: backgroundColors
+    })), /* @__PURE__ */ React6.createElement("div", {
+      className: app_module_css_default.controlSwitch
+    }, /* @__PURE__ */ React6.createElement("span", null, "BorderColor:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+      className: app_module_css_default.switch,
+      value: borderColor,
+      onSelect: setBorderColor,
+      items: borderColors
     }))))));
   };
   var domContainer = document.querySelector("#app");

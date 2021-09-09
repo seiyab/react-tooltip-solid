@@ -26,6 +26,7 @@ export const ButtonGroup = <T extends string>({
       <div className={styles.buttonGroup}>
         {items.map((item) => (
           <button
+            key={item.value}
             type="button"
             className={classNames(styles.buttonItem, {
               [styles.buttonItemSelected]: value === item.value,

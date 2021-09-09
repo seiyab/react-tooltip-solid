@@ -1,4 +1,4 @@
-import { css, CSSObject, cx } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 import * as React from "react";
 
 import { Place } from "src/position/place";
@@ -16,51 +16,45 @@ export const Arrow: React.VoidFunctionComponent<Props> = ({
   backgroundColor,
   borderColor,
 }) => {
+  const { width, height } = rect(place);
+  const bound = css({
+    width: `${width}px`,
+    height: `${height}px`,
+  });
   return (
-    <div className={cx(wrapperClass(place), className)}>
-      <div className={cx(placeClass(place, "7px", borderColor), commonClass)} />
-      <div
-        className={cx(
-          placeClass(place, "6px", backgroundColor),
-          commonClass,
-          css({ position: "absolute" })
-        )}
-      />
+    <div className={cx(wrapperClass(place), bound, className)}>
+      <svg viewBox={`0 0 ${width} ${height}`}>
+        <polyline
+          fill={backgroundColor}
+          stroke={borderColor}
+          points={points(place)}
+        />
+      </svg>
     </div>
   );
 };
 
-function placeClass(place: Place, size: string, color: string): string {
-  const border: CSSObject = {
-    borderTop: `${size} solid transparent`,
-    borderBottom: `${size} solid transparent`,
-    borderLeft: `${size} solid transparent`,
-    borderRight: `${size} solid transparent`,
+function rect(place: Place): { width: number; height: number } {
+  const size = 14;
+  if (place === Place.top || place === Place.bottom)
+    return {
+      width: size,
+      height: size / 2,
+    };
+  return {
+    width: size / 2,
+    height: size,
   };
-  if (place === Place.top)
-    return css({
-      ...border,
-      borderTop: `${size} solid ${color}`,
-      marginBottom: `-${size}`,
-    });
+}
+
+function points(place: Place): string {
+  const { width, height } = rect(place);
+  if (place === Place.top) return `0,0 ${width / 2},${height} ${width},0`;
   else if (place === Place.left)
-    return css({
-      ...border,
-      borderLeft: `${size} solid ${color}`,
-      marginRight: `-${size}`,
-    });
+    return `0,0 ${width},${height / 2} 0,${height}`;
   else if (place === Place.right)
-    return css({
-      ...border,
-      borderRight: `${size} solid ${color}`,
-      marginLeft: `-${size}`,
-    });
-  else
-    return css({
-      ...border,
-      borderBottom: `${size} solid ${color}`,
-      marginTop: `-${size}`,
-    });
+    return `${width},0 0,${height / 2} ${width},${height}`;
+  else return `0,${height}, ${width / 2},0 ${width},${height}`;
 }
 
 function wrapperClass(place: Place): string {
@@ -93,8 +87,3 @@ function wrapperClass(place: Place): string {
       alignItems: "flex-end",
     });
 }
-
-const commonClass = css({
-  width: "0",
-  height: "0",
-});
