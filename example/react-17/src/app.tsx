@@ -6,13 +6,13 @@ import { Tooltip, TooltipListener } from "react-tooltip-solid";
 import styles from "./app.module.css";
 import { ButtonGroup } from "./ButtonGroup";
 
-const places = [
+const directions = [
   { value: "top", label: "Top" },
   { value: "bottom", label: "Bottom" },
   { value: "left", label: "Left" },
   { value: "right", label: "Right" },
 ] as const;
-type Place = typeof places[number]["value"];
+type Direction = typeof directions[number]["value"];
 
 const events = [
   { value: "hover", label: "Hover" },
@@ -38,7 +38,7 @@ const borderColors = [
 
 const App: React.VoidFunctionComponent = () => {
   const [event, setEvent] = React.useState<"click" | "hover">("hover");
-  const [place, setPlace] = React.useState<Place>("top");
+  const [direction, setDirection] = React.useState<Direction>("top");
   const [effect, setEffect] = React.useState<"float" | "solid">("float");
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [borderColor, setBorderColor] = React.useState("transparent");
@@ -54,7 +54,7 @@ const App: React.VoidFunctionComponent = () => {
               tooltip={
                 <Tooltip
                   className={styles.tooltip}
-                  place={place}
+                  direction={direction}
                   effect={effect}
                   backgroundColor={backgroundColor}
                   borderColor={borderColor}
@@ -79,12 +79,12 @@ const App: React.VoidFunctionComponent = () => {
               />
             </div>
             <div className={styles.controlSwitch}>
-              <span>Place:</span>
-              <ButtonGroup<Place>
+              <span>Direction:</span>
+              <ButtonGroup<Direction>
                 className={styles.switch}
-                value={place}
-                onSelect={setPlace}
-                items={places}
+                value={direction}
+                onSelect={setDirection}
+                items={directions}
               />
             </div>
             <div className={styles.controlSwitch}>

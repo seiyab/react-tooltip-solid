@@ -22860,15 +22860,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
-  // ../../src/position/place.ts
-  var place_exports = {};
-  __export(place_exports, {
-    Place: () => Place
+  // ../../src/position/direction.ts
+  var direction_exports = {};
+  __export(direction_exports, {
+    Direction: () => Direction
   });
-  var Place;
-  var init_place = __esm({
-    "../../src/position/place.ts"() {
-      Place = {
+  var Direction;
+  var init_direction = __esm({
+    "../../src/position/direction.ts"() {
+      Direction = {
         top: "top",
         left: "left",
         bottom: "bottom",
@@ -22891,47 +22891,47 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       top: `${y}px`
     };
   }
-  function calcStylePosition(target, tooltipRect, place) {
+  function calcStylePosition(target, tooltipRect, direction) {
     if (!tooltipRect)
       return [-1e6, -1e6];
     const [x, y] = target;
     const rect2 = tooltipRect;
     const gap = 5;
-    if (place === "left")
+    if (direction === "left")
       return [x - rect2.width - gap, y - rect2.height / 2];
-    if (place === "right")
+    if (direction === "right")
       return [x + gap, y - rect2.height / 2];
-    if (place === "bottom")
+    if (direction === "bottom")
       return [x - rect2.width / 2, y + gap];
     return [x - rect2.width / 2, y - rect2.height - gap];
   }
-  function calcFloatPosition(cursor, place) {
+  function calcFloatPosition(cursor, direction) {
     const [x, y] = cursor;
-    if (place === Place.top)
+    if (direction === Direction.top)
       return [x, y - 2];
-    else if (place === Place.right)
+    else if (direction === Direction.right)
       return [x + 5, y];
-    else if (place === Place.left)
+    else if (direction === Direction.left)
       return [x - 2, y];
     else
       return [x, y + 15];
   }
-  function calcSolidPosition(listenerRect, place) {
+  function calcSolidPosition(listenerRect, direction) {
     if (!listenerRect)
       return [-1e6, -1e6];
     const rect2 = listenerRect;
     const gap = 0;
-    if (place === "left")
+    if (direction === "left")
       return [rect2.left - gap, rect2.top + rect2.height / 2];
-    if (place === "right")
+    if (direction === "right")
       return [rect2.right + gap, rect2.top + rect2.height / 2];
-    if (place === "bottom")
+    if (direction === "bottom")
       return [rect2.left + rect2.width / 2, rect2.bottom + gap];
     return [rect2.left + rect2.width / 2, rect2.top - gap];
   }
   var init_position = __esm({
     "../../src/position/index.ts"() {
-      init_place();
+      init_direction();
     }
   });
 
@@ -22956,9 +22956,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   __export(Arrow_exports, {
     Arrow: () => Arrow
   });
-  function rect(place) {
+  function rect(direction) {
     const size = 14;
-    if (place === Place.top || place === Place.bottom)
+    if (direction === Direction.top || direction === Direction.bottom)
       return {
         width: size,
         height: size / 2
@@ -22968,33 +22968,33 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       height: size
     };
   }
-  function points(place) {
-    const {width, height} = rect(place);
-    if (place === Place.top)
+  function points(direction) {
+    const {width, height} = rect(direction);
+    if (direction === Direction.top)
       return `0,0 ${width / 2},${height} ${width},0`;
-    else if (place === Place.left)
+    else if (direction === Direction.left)
       return `0,0 ${width},${height / 2} 0,${height}`;
-    else if (place === Place.right)
+    else if (direction === Direction.right)
       return `${width},0 0,${height / 2} ${width},${height}`;
     else
       return `0,${height}, ${width / 2},0 ${width},${height}`;
   }
-  function wrapperClass(place) {
-    if (place === Place.top)
+  function wrapperClass(direction) {
+    if (direction === Direction.top)
       return (0, import_css.css)({
         position: "relative",
         display: "flex",
         justifyContent: "center",
         alignItems: "flex-start"
       });
-    else if (place === Place.left)
+    else if (direction === Direction.left)
       return (0, import_css.css)({
         position: "relative",
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center"
       });
-    else if (place === Place.right)
+    else if (direction === Direction.right)
       return (0, import_css.css)({
         position: "relative",
         display: "flex",
@@ -23014,26 +23014,26 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     "../../src/Tooltip/Arrow/index.tsx"() {
       import_css = __toModule(require_emotion_css_cjs());
       React4 = __toModule(require_react());
-      init_place();
+      init_direction();
       Arrow = ({
         className,
-        place,
+        direction,
         backgroundColor,
         borderColor
       }) => {
-        const {width, height} = rect(place);
+        const {width, height} = rect(direction);
         const bound = (0, import_css.css)({
           width: `${width}px`,
           height: `${height}px`
         });
         return /* @__PURE__ */ React4.createElement("div", {
-          className: (0, import_css.cx)(wrapperClass(place), bound, className)
+          className: (0, import_css.cx)(wrapperClass(direction), bound, className)
         }, /* @__PURE__ */ React4.createElement("svg", {
           viewBox: `0 0 ${width} ${height}`
         }, /* @__PURE__ */ React4.createElement("polyline", {
           fill: backgroundColor,
           stroke: borderColor,
-          points: points(place)
+          points: points(direction)
         })));
       };
     }
@@ -23047,7 +23047,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var jsx_runtime_1 = require_jsx_runtime();
       var css_1 = require_emotion_css_cjs();
       var do_expr_1 = require_lib();
-      var place_1 = (init_place(), place_exports);
+      var direction_1 = (init_direction(), direction_exports);
       var Arrow_1 = (init_Arrow(), Arrow_exports);
       var horizontalWrapper = () => css_1.css({
         display: "flex",
@@ -23058,19 +23058,19 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         marginLeft: "auto",
         marginRight: "auto"
       };
-      var arrowStyle = (place) => {
-        if (place === place_1.Place.top)
+      var arrowStyle = (direction) => {
+        if (direction === direction_1.Direction.top)
           return css_1.css({marginTop: "-1px"}, verticalArrow);
-        else if (place === place_1.Place.left)
+        else if (direction === direction_1.Direction.left)
           return css_1.css({marginLeft: "-1px"});
-        else if (place === place_1.Place.right)
+        else if (direction === direction_1.Direction.right)
           return css_1.css({marginRight: "-1px"});
         else
           return css_1.css({marginBottom: "-1px"}, verticalArrow);
       };
-      var SpeechBubble = ({className, place, backgroundColor, borderColor = "transparent", children}) => {
+      var SpeechBubble = ({className, direction, backgroundColor, borderColor = "transparent", children}) => {
         const wrapperClass2 = do_expr_1.do_(() => {
-          if (place === place_1.Place.top || place === place_1.Place.bottom)
+          if (direction === direction_1.Direction.top || direction === direction_1.Direction.bottom)
             return verticalWrapper();
           return horizontalWrapper();
         });
@@ -23083,17 +23083,17 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           borderStyle: "solid"
         });
         const arrowProps = {
-          className: arrowStyle(place),
-          place,
+          className: arrowStyle(direction),
+          direction,
           backgroundColor,
           borderColor
         };
         return jsx_runtime_1.jsxs("div", Object.assign({className: wrapperClass2}, {children: [do_expr_1.do_(() => {
-          if (place === place_1.Place.right || place === place_1.Place.bottom)
+          if (direction === direction_1.Direction.right || direction === direction_1.Direction.bottom)
             return jsx_runtime_1.jsx(Arrow_1.Arrow, Object.assign({}, arrowProps), void 0);
           return null;
         }), jsx_runtime_1.jsx("div", Object.assign({className: css_1.cx(className, contentClass)}, {children}), void 0), do_expr_1.do_(() => {
-          if (place === place_1.Place.top || place === place_1.Place.left)
+          if (direction === direction_1.Direction.top || direction === direction_1.Direction.left)
             return jsx_runtime_1.jsx(Arrow_1.Arrow, Object.assign({}, arrowProps), void 0);
           return null;
         })]}), void 0);
@@ -23145,14 +23145,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
       var useRerender_1 = (init_useRerender(), useRerender_exports);
       var position_1 = (init_position(), position_exports);
-      var place_1 = (init_place(), place_exports);
+      var direction_1 = (init_direction(), direction_exports);
       var TooltipContext_1 = (init_TooltipContext(), TooltipContext_exports);
       var SpeechBubble_1 = __importDefault(require_SpeechBubble());
       var wrapper = {
         position: "fixed",
         zIndex: 999
       };
-      var Tooltip2 = ({className, effect = "float", place = place_1.Place.top, backgroundColor = "white", borderColor, children}) => {
+      var Tooltip2 = ({className, effect = "float", direction = direction_1.Direction.top, backgroundColor = "white", borderColor, children}) => {
         const [rect2, ref] = useClientRect_1.useClientRect();
         const context = React7.useContext(TooltipContext_1.TooltipContext);
         const [cursor, setCursor] = React7.useState([0, 0]);
@@ -23172,10 +23172,10 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         const position = position_1.calcStylePosition(do_expr_1.do_(() => {
           var _a, _b;
           if (effect === "float")
-            return position_1.calcFloatPosition(cursor, place);
-          return position_1.calcSolidPosition((_b = (_a = context.listenerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, place);
-        }), rect2, place);
-        return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, {children: context.active && jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper), style: position_1.stylePosition(position), ref, onClick: stopPropagation}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, place, backgroundColor, borderColor}, {children}), void 0)}), void 0)}, void 0);
+            return position_1.calcFloatPosition(cursor, direction);
+          return position_1.calcSolidPosition((_b = (_a = context.listenerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, direction);
+        }), rect2, direction);
+        return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, {children: context.active && jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper), style: position_1.stylePosition(position), ref, onClick: stopPropagation}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, direction, backgroundColor, borderColor}, {children}), void 0)}), void 0)}, void 0);
       };
       exports.default = Tooltip2;
     }
@@ -23373,7 +23373,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React6 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-33885-1vG2aaQBabsj/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-34611-Qs6c7F5TqY9B/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
   var css2 = `._wrapper_1rmkf_1 {
   font-family: sans-serif;
@@ -23434,7 +23434,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var import_classnames = __toModule(require_classnames());
   var React5 = __toModule(require_react());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-33885-1vG2aaQBabsj/react-17/src/ButtonGroup/styles.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-34611-Qs6c7F5TqY9B/react-17/src/ButtonGroup/styles.module.css.js
   var digest2 = "9fe92018ee23dd2219d2cbdd4c73747c7a29b94a1cdaf80f8e3266a056f0e7e0";
   var css3 = `._wrapper_1yzde_1 {
   display: flex;
@@ -23499,7 +23499,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   };
 
   // src/app.tsx
-  var places = [
+  var directions = [
     {value: "top", label: "Top"},
     {value: "bottom", label: "Bottom"},
     {value: "left", label: "Left"},
@@ -23526,7 +23526,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var App = () => {
     var _a;
     const [event, setEvent] = React6.useState("hover");
-    const [place, setPlace] = React6.useState("top");
+    const [direction, setDirection] = React6.useState("top");
     const [effect, setEffect] = React6.useState("float");
     const [backgroundColor, setBackgroundColor] = React6.useState("black");
     const [borderColor, setBorderColor] = React6.useState("transparent");
@@ -23541,7 +23541,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       className: app_module_css_default.dynamicDisplay,
       tooltip: /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.Tooltip, {
         className: app_module_css_default.tooltip,
-        place,
+        direction,
         effect,
         backgroundColor,
         borderColor
@@ -23557,11 +23557,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       items: events
     })), /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "Place:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React6.createElement("span", null, "Direction:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
-      value: place,
-      onSelect: setPlace,
-      items: places
+      value: direction,
+      onSelect: setDirection,
+      items: directions
     })), /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controlSwitch
     }, /* @__PURE__ */ React6.createElement("span", null, "Effect:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
@@ -23578,7 +23578,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       items: backgroundColors
     })), /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "BorderColor:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React6.createElement("span", null, "Border Color:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
       value: borderColor,
       onSelect: setBorderColor,

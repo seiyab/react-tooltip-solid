@@ -2,12 +2,12 @@ import { css, cx } from "@emotion/css";
 import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 
-import { Place } from "src/position/place";
+import { Direction } from "src/position/direction";
 import { Arrow } from "src/Tooltip/Arrow";
 
 type Props = {
   className?: string;
-  place: Place;
+  direction: Direction;
   backgroundColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
   borderColor: React.CSSProperties["borderColor"];
 };
@@ -25,22 +25,24 @@ const verticalArrow = {
   marginRight: "auto",
 };
 
-const arrowStyle = (place: Place) => {
-  if (place === Place.top) return css({ marginTop: "-1px" }, verticalArrow);
-  else if (place === Place.left) return css({ marginLeft: "-1px" });
-  else if (place === Place.right) return css({ marginRight: "-1px" });
+const arrowStyle = (direction: Direction) => {
+  if (direction === Direction.top)
+    return css({ marginTop: "-1px" }, verticalArrow);
+  else if (direction === Direction.left) return css({ marginLeft: "-1px" });
+  else if (direction === Direction.right) return css({ marginRight: "-1px" });
   else return css({ marginBottom: "-1px" }, verticalArrow);
 };
 
 const SpeechBubble: React.FunctionComponent<Props> = ({
   className,
-  place,
+  direction,
   backgroundColor,
   borderColor = "transparent",
   children,
 }) => {
   const wrapperClass = do_(() => {
-    if (place === Place.top || place === Place.bottom) return verticalWrapper();
+    if (direction === Direction.top || direction === Direction.bottom)
+      return verticalWrapper();
     return horizontalWrapper();
   });
   const contentClass = css({
@@ -52,8 +54,8 @@ const SpeechBubble: React.FunctionComponent<Props> = ({
     borderStyle: "solid",
   });
   const arrowProps = {
-    className: arrowStyle(place),
-    place,
+    className: arrowStyle(direction),
+    direction,
     backgroundColor,
     borderColor,
   };
@@ -61,13 +63,13 @@ const SpeechBubble: React.FunctionComponent<Props> = ({
   return (
     <div className={wrapperClass}>
       {do_(() => {
-        if (place === Place.right || place === Place.bottom)
+        if (direction === Direction.right || direction === Direction.bottom)
           return <Arrow {...arrowProps} />;
         return null;
       })}
       <div className={cx(className, contentClass)}>{children}</div>
       {do_(() => {
-        if (place === Place.top || place === Place.left)
+        if (direction === Direction.top || direction === Direction.left)
           return <Arrow {...arrowProps} />;
         return null;
       })}

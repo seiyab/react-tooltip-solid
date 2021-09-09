@@ -1,42 +1,42 @@
 import { css, cx } from "@emotion/css";
 import * as React from "react";
 
-import { Place } from "src/position/place";
+import { Direction } from "src/position/direction";
 
 type Props = {
   className?: string;
-  place: Place;
+  direction: Direction;
   backgroundColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
   borderColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
 };
 
 export const Arrow: React.VoidFunctionComponent<Props> = ({
   className,
-  place,
+  direction,
   backgroundColor,
   borderColor,
 }) => {
-  const { width, height } = rect(place);
+  const { width, height } = rect(direction);
   const bound = css({
     width: `${width}px`,
     height: `${height}px`,
   });
   return (
-    <div className={cx(wrapperClass(place), bound, className)}>
+    <div className={cx(wrapperClass(direction), bound, className)}>
       <svg viewBox={`0 0 ${width} ${height}`}>
         <polyline
           fill={backgroundColor}
           stroke={borderColor}
-          points={points(place)}
+          points={points(direction)}
         />
       </svg>
     </div>
   );
 };
 
-function rect(place: Place): { width: number; height: number } {
+function rect(direction: Direction): { width: number; height: number } {
   const size = 14;
-  if (place === Place.top || place === Place.bottom)
+  if (direction === Direction.top || direction === Direction.bottom)
     return {
       width: size,
       height: size / 2,
@@ -47,32 +47,33 @@ function rect(place: Place): { width: number; height: number } {
   };
 }
 
-function points(place: Place): string {
-  const { width, height } = rect(place);
-  if (place === Place.top) return `0,0 ${width / 2},${height} ${width},0`;
-  else if (place === Place.left)
+function points(direction: Direction): string {
+  const { width, height } = rect(direction);
+  if (direction === Direction.top)
+    return `0,0 ${width / 2},${height} ${width},0`;
+  else if (direction === Direction.left)
     return `0,0 ${width},${height / 2} 0,${height}`;
-  else if (place === Place.right)
+  else if (direction === Direction.right)
     return `${width},0 0,${height / 2} ${width},${height}`;
   else return `0,${height}, ${width / 2},0 ${width},${height}`;
 }
 
-function wrapperClass(place: Place): string {
-  if (place === Place.top)
+function wrapperClass(direction: Direction): string {
+  if (direction === Direction.top)
     return css({
       position: "relative",
       display: "flex",
       justifyContent: "center",
       alignItems: "flex-start",
     });
-  else if (place === Place.left)
+  else if (direction === Direction.left)
     return css({
       position: "relative",
       display: "flex",
       justifyContent: "flex-start",
       alignItems: "center",
     });
-  else if (place === Place.right)
+  else if (direction === Direction.right)
     return css({
       position: "relative",
       display: "flex",

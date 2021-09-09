@@ -10,14 +10,14 @@ import {
   stylePosition,
 } from "src/position";
 
-import { Place } from "src/position/place";
+import { Direction } from "src/position/direction";
 import { TooltipContext } from "src/TooltipContext";
 import SpeechBubble from "./SpeechBubble";
 
 type Props = {
   className?: string;
   effect?: "float" | "solid";
-  place?: Place;
+  direction?: Direction;
   backgroundColor?: React.CSSProperties["backgroundColor"];
   borderColor?: React.CSSProperties["borderColor"];
 };
@@ -30,7 +30,7 @@ const wrapper: CSSObject = {
 const Tooltip: React.FunctionComponent<Props> = ({
   className,
   effect = "float",
-  place = Place.top,
+  direction = Direction.top,
   backgroundColor = "white",
   borderColor,
   children,
@@ -57,14 +57,14 @@ const Tooltip: React.FunctionComponent<Props> = ({
 
   const position = calcStylePosition(
     do_(() => {
-      if (effect === "float") return calcFloatPosition(cursor, place);
+      if (effect === "float") return calcFloatPosition(cursor, direction);
       return calcSolidPosition(
         context.listenerRef.current?.getBoundingClientRect() ?? null,
-        place
+        direction
       );
     }),
     rect,
-    place
+    direction
   );
   return (
     <>
@@ -77,7 +77,7 @@ const Tooltip: React.FunctionComponent<Props> = ({
         >
           <SpeechBubble
             className={className}
-            place={place}
+            direction={direction}
             backgroundColor={backgroundColor}
             borderColor={borderColor}
           >

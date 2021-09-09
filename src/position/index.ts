@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { Place } from "src/position/place";
+import { Direction } from "src/position/direction";
 
 type StylePosition = Pick<CSSProperties, "left" | "top">;
 
@@ -15,7 +15,7 @@ export function stylePosition([x, y]: Position): StylePosition {
 export function calcStylePosition(
   target: Position,
   tooltipRect: DOMRect | null,
-  place: Place
+  direction: Direction
 ): Position {
   if (!tooltipRect) return [-1_000_000, -1_000_000];
   const [x, y] = target;
@@ -23,33 +23,38 @@ export function calcStylePosition(
 
   const gap = 5;
 
-  if (place === "left") return [x - rect.width - gap, y - rect.height / 2];
+  if (direction === "left") return [x - rect.width - gap, y - rect.height / 2];
 
-  if (place === "right") return [x + gap, y - rect.height / 2];
+  if (direction === "right") return [x + gap, y - rect.height / 2];
 
-  if (place === "bottom") return [x - rect.width / 2, y + gap];
+  if (direction === "bottom") return [x - rect.width / 2, y + gap];
 
   return [x - rect.width / 2, y - rect.height - gap];
 }
 
-export function calcFloatPosition(cursor: Position, place: Place): Position {
+export function calcFloatPosition(
+  cursor: Position,
+  direction: Direction
+): Position {
   const [x, y] = cursor;
-  if (place === Place.top) return [x, y - 2];
-  else if (place === Place.right) return [x + 5, y];
-  else if (place === Place.left) return [x - 2, y];
+  if (direction === Direction.top) return [x, y - 2];
+  else if (direction === Direction.right) return [x + 5, y];
+  else if (direction === Direction.left) return [x - 2, y];
   else return [x, y + 15]; // bottom
 }
 
 export function calcSolidPosition(
   listenerRect: DOMRect | null,
-  place: Place
+  direction: Direction
 ): Position {
   if (!listenerRect) return [-1_000_000, -1_000_000];
   const rect = listenerRect;
   const gap = 0;
-  if (place === "left") return [rect.left - gap, rect.top + rect.height / 2];
-  if (place === "right") return [rect.right + gap, rect.top + rect.height / 2];
-  if (place === "bottom")
+  if (direction === "left")
+    return [rect.left - gap, rect.top + rect.height / 2];
+  if (direction === "right")
+    return [rect.right + gap, rect.top + rect.height / 2];
+  if (direction === "bottom")
     return [rect.left + rect.width / 2, rect.bottom + gap];
   return [rect.left + rect.width / 2, rect.top - gap];
 }
