@@ -23,16 +23,14 @@ export function calcStylePosition(
 
   const gap = 5;
 
-  if (direction === "left") return [x - rect.width - gap, y - rect.height / 2];
-
-  if (direction === "right") return [x + gap, y - rect.height / 2];
-
-  if (direction === "bottom") return [x - rect.width / 2, y + gap];
-
-  return [x - rect.width / 2, y - rect.height - gap];
+  if (direction === Direction.left)
+    return [x - rect.width - gap, y - rect.height / 2];
+  else if (direction === Direction.right) return [x + gap, y - rect.height / 2];
+  else if (direction === Direction.bottom) return [x - rect.width / 2, y + gap];
+  else return [x - rect.width / 2, y - rect.height - gap];
 }
 
-export function calcFloatPosition(
+export function calcAtCursorPosition(
   cursor: Position,
   direction: Direction
 ): Position {
@@ -43,7 +41,7 @@ export function calcFloatPosition(
   else return [x, y + 15]; // bottom
 }
 
-export function calcSolidPosition(
+export function calcAtListenerPosition(
   listenerRect: DOMRect | null,
   direction: Direction
 ): Position {

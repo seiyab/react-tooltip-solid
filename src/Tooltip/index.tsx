@@ -3,9 +3,10 @@ import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 import { useClientRect } from "src/hooks/useClientRect";
 import { useRerender } from "src/hooks/useRerender";
+import { TooltipAt } from "src/options";
 import {
-  calcFloatPosition,
-  calcSolidPosition,
+  calcAtCursorPosition,
+  calcAtListenerPosition,
   calcStylePosition,
   stylePosition,
 } from "src/position";
@@ -16,7 +17,7 @@ import SpeechBubble from "./SpeechBubble";
 
 type Props = {
   className?: string;
-  effect?: "float" | "solid";
+  at?: TooltipAt;
   direction?: Direction;
   backgroundColor?: React.CSSProperties["backgroundColor"];
   borderColor?: React.CSSProperties["borderColor"];
@@ -29,7 +30,7 @@ const wrapper: CSSObject = {
 
 const Tooltip: React.FunctionComponent<Props> = ({
   className,
-  effect = "float",
+  at = TooltipAt.Cursor,
   direction = Direction.top,
   backgroundColor = "white",
   borderColor,
@@ -57,8 +58,9 @@ const Tooltip: React.FunctionComponent<Props> = ({
 
   const position = calcStylePosition(
     do_(() => {
-      if (effect === "float") return calcFloatPosition(cursor, direction);
-      return calcSolidPosition(
+      if (at === TooltipAt.Cursor)
+        return calcAtCursorPosition(cursor, direction);
+      return calcAtListenerPosition(
         context.listenerRef.current?.getBoundingClientRect() ?? null,
         direction
       );

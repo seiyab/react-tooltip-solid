@@ -10836,11 +10836,11 @@
                   var callback = update.callback;
                   if (callback !== null) {
                     workInProgress2.flags |= Callback;
-                    var effects2 = queue.effects;
-                    if (effects2 === null) {
+                    var effects = queue.effects;
+                    if (effects === null) {
                       queue.effects = [update];
                     } else {
-                      effects2.push(update);
+                      effects.push(update);
                     }
                   }
                 }
@@ -10888,11 +10888,11 @@
             return hasForceUpdate;
           }
           function commitUpdateQueue(finishedWork, finishedQueue, instance) {
-            var effects2 = finishedQueue.effects;
+            var effects = finishedQueue.effects;
             finishedQueue.effects = null;
-            if (effects2 !== null) {
-              for (var i = 0; i < effects2.length; i++) {
-                var effect = effects2[i];
+            if (effects !== null) {
+              for (var i = 0; i < effects.length; i++) {
+                var effect = effects[i];
                 var callback = effect.callback;
                 if (callback !== null) {
                   effect.callback = null;
@@ -22860,6 +22860,26 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
+  // ../../src/options/index.tsx
+  var options_exports = {};
+  __export(options_exports, {
+    TooltipAt: () => TooltipAt,
+    TooltipEvent: () => TooltipEvent
+  });
+  var TooltipEvent, TooltipAt;
+  var init_options = __esm({
+    "../../src/options/index.tsx"() {
+      TooltipEvent = {
+        Hover: "hover",
+        Click: "click"
+      };
+      TooltipAt = {
+        Cursor: "cursor",
+        Listener: "listener"
+      };
+    }
+  });
+
   // ../../src/position/direction.ts
   var direction_exports = {};
   __export(direction_exports, {
@@ -22880,8 +22900,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   // ../../src/position/index.ts
   var position_exports = {};
   __export(position_exports, {
-    calcFloatPosition: () => calcFloatPosition,
-    calcSolidPosition: () => calcSolidPosition,
+    calcAtCursorPosition: () => calcAtCursorPosition,
+    calcAtListenerPosition: () => calcAtListenerPosition,
     calcStylePosition: () => calcStylePosition,
     stylePosition: () => stylePosition
   });
@@ -22897,15 +22917,16 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     const [x, y] = target;
     const rect2 = tooltipRect;
     const gap = 5;
-    if (direction === "left")
+    if (direction === Direction.left)
       return [x - rect2.width - gap, y - rect2.height / 2];
-    if (direction === "right")
+    else if (direction === Direction.right)
       return [x + gap, y - rect2.height / 2];
-    if (direction === "bottom")
+    else if (direction === Direction.bottom)
       return [x - rect2.width / 2, y + gap];
-    return [x - rect2.width / 2, y - rect2.height - gap];
+    else
+      return [x - rect2.width / 2, y - rect2.height - gap];
   }
-  function calcFloatPosition(cursor, direction) {
+  function calcAtCursorPosition(cursor, direction) {
     const [x, y] = cursor;
     if (direction === Direction.top)
       return [x, y - 2];
@@ -22916,7 +22937,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     else
       return [x, y + 15];
   }
-  function calcSolidPosition(listenerRect, direction) {
+  function calcAtListenerPosition(listenerRect, direction) {
     if (!listenerRect)
       return [-1e6, -1e6];
     const rect2 = listenerRect;
@@ -23144,6 +23165,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var React7 = __importStar(require_react());
       var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
       var useRerender_1 = (init_useRerender(), useRerender_exports);
+      var options_1 = (init_options(), options_exports);
       var position_1 = (init_position(), position_exports);
       var direction_1 = (init_direction(), direction_exports);
       var TooltipContext_1 = (init_TooltipContext(), TooltipContext_exports);
@@ -23152,7 +23174,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         position: "fixed",
         zIndex: 999
       };
-      var Tooltip2 = ({className, effect = "float", direction = direction_1.Direction.top, backgroundColor = "white", borderColor, children}) => {
+      var Tooltip2 = ({className, at = options_1.TooltipAt.Cursor, direction = direction_1.Direction.top, backgroundColor = "white", borderColor, children}) => {
         const [rect2, ref] = useClientRect_1.useClientRect();
         const context = React7.useContext(TooltipContext_1.TooltipContext);
         const [cursor, setCursor] = React7.useState([0, 0]);
@@ -23171,28 +23193,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         }, [rerender]);
         const position = position_1.calcStylePosition(do_expr_1.do_(() => {
           var _a, _b;
-          if (effect === "float")
-            return position_1.calcFloatPosition(cursor, direction);
-          return position_1.calcSolidPosition((_b = (_a = context.listenerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, direction);
+          if (at === options_1.TooltipAt.Cursor)
+            return position_1.calcAtCursorPosition(cursor, direction);
+          return position_1.calcAtListenerPosition((_b = (_a = context.listenerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, direction);
         }), rect2, direction);
         return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, {children: context.active && jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper), style: position_1.stylePosition(position), ref, onClick: stopPropagation}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, direction, backgroundColor, borderColor}, {children}), void 0)}), void 0)}, void 0);
       };
       exports.default = Tooltip2;
-    }
-  });
-
-  // ../../src/options/index.tsx
-  var options_exports = {};
-  __export(options_exports, {
-    TooltipEvent: () => TooltipEvent
-  });
-  var TooltipEvent;
-  var init_options = __esm({
-    "../../src/options/index.tsx"() {
-      TooltipEvent = {
-        Hover: "hover",
-        Click: "click"
-      };
     }
   });
 
@@ -23373,7 +23380,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React6 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-34611-Qs6c7F5TqY9B/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-36113-I1XuCyzkkAjV/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
   var css2 = `._wrapper_1rmkf_1 {
   font-family: sans-serif;
@@ -23434,7 +23441,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var import_classnames = __toModule(require_classnames());
   var React5 = __toModule(require_react());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-34611-Qs6c7F5TqY9B/react-17/src/ButtonGroup/styles.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-36113-I1XuCyzkkAjV/react-17/src/ButtonGroup/styles.module.css.js
   var digest2 = "9fe92018ee23dd2219d2cbdd4c73747c7a29b94a1cdaf80f8e3266a056f0e7e0";
   var css3 = `._wrapper_1yzde_1 {
   display: flex;
@@ -23509,9 +23516,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     {value: "hover", label: "Hover"},
     {value: "click", label: "Click"}
   ];
-  var effects = [
-    {value: "float", label: "Float"},
-    {value: "solid", label: "Solid"}
+  var ats = [
+    {value: "cursor", label: "Cursor"},
+    {value: "listener", label: "Listener"}
   ];
   var backgroundColors = [
     {value: "black", label: "Black"},
@@ -23527,7 +23534,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     var _a;
     const [event, setEvent] = React6.useState("hover");
     const [direction, setDirection] = React6.useState("top");
-    const [effect, setEffect] = React6.useState("float");
+    const [at, setAt] = React6.useState("cursor");
     const [backgroundColor, setBackgroundColor] = React6.useState("black");
     const [borderColor, setBorderColor] = React6.useState("transparent");
     return /* @__PURE__ */ React6.createElement("main", {
@@ -23542,7 +23549,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       tooltip: /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.Tooltip, {
         className: app_module_css_default.tooltip,
         direction,
-        effect,
+        at,
         backgroundColor,
         borderColor
       }, "Hello")
@@ -23564,11 +23571,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       items: directions
     })), /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "Effect:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React6.createElement("span", null, "At:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
-      value: effect,
-      onSelect: setEffect,
-      items: effects
+      value: at,
+      onSelect: setAt,
+      items: ats
     })), /* @__PURE__ */ React6.createElement("div", {
       className: app_module_css_default.controlSwitch
     }, /* @__PURE__ */ React6.createElement("span", null, "Background Color:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {

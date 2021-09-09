@@ -19,9 +19,9 @@ const events = [
   { value: "click", label: "Click" },
 ] as const;
 
-const effects = [
-  { value: "float", label: "Float" },
-  { value: "solid", label: "Solid" },
+const ats = [
+  { value: "cursor", label: "Cursor" },
+  { value: "listener", label: "Listener" },
 ] as const;
 
 const backgroundColors = [
@@ -39,7 +39,7 @@ const borderColors = [
 const App: React.VoidFunctionComponent = () => {
   const [event, setEvent] = React.useState<"click" | "hover">("hover");
   const [direction, setDirection] = React.useState<Direction>("top");
-  const [effect, setEffect] = React.useState<"float" | "solid">("float");
+  const [at, setAt] = React.useState<"cursor" | "listener">("cursor");
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [borderColor, setBorderColor] = React.useState("transparent");
   return (
@@ -55,7 +55,7 @@ const App: React.VoidFunctionComponent = () => {
                 <Tooltip
                   className={styles.tooltip}
                   direction={direction}
-                  effect={effect}
+                  at={at}
                   backgroundColor={backgroundColor}
                   borderColor={borderColor}
                 >
@@ -71,7 +71,7 @@ const App: React.VoidFunctionComponent = () => {
           <div className={styles.controls}>
             <div className={styles.controlSwitch}>
               <span>Event:</span>
-              <ButtonGroup<"click" | "hover">
+              <ButtonGroup
                 className={styles.switch}
                 value={event}
                 onSelect={setEvent}
@@ -80,7 +80,7 @@ const App: React.VoidFunctionComponent = () => {
             </div>
             <div className={styles.controlSwitch}>
               <span>Direction:</span>
-              <ButtonGroup<Direction>
+              <ButtonGroup
                 className={styles.switch}
                 value={direction}
                 onSelect={setDirection}
@@ -88,12 +88,12 @@ const App: React.VoidFunctionComponent = () => {
               />
             </div>
             <div className={styles.controlSwitch}>
-              <span>Effect:</span>
-              <ButtonGroup<"float" | "solid">
+              <span>At:</span>
+              <ButtonGroup
                 className={styles.switch}
-                value={effect}
-                onSelect={setEffect}
-                items={effects}
+                value={at}
+                onSelect={setAt}
+                items={ats}
               />
             </div>
             <div className={styles.controlSwitch}>
