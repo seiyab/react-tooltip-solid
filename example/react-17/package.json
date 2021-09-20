@@ -1,5 +1,5 @@
 {
-  "name": "@seiyab/react-tooltip-solid-example",
+  "name": "@seiyab/tooltip-react-example",
   "version": "0.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,10 +12,10 @@
   "author": "seiyab",
   "license": "MIT",
   "dependencies": {
+    "@seiyab/tooltip-react": "file:../..",
     "classnames": "^2.3.1",
     "react": "file:../../node_modules/react",
-    "react-dom": "file:../../node_modules/react-dom",
-    "react-tooltip-solid": "file:../../"
+    "react-dom": "file:../../node_modules/react-dom"
   },
   "devDependencies": {
     "@tsconfig/recommended": "^1.0.1",

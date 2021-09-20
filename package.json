@@ -1,7 +1,7 @@
 {
-  "name": "@seiyab/react-tooltip-solid",
+  "name": "@seiyab/tooltip-react",
   "version": "0.0.0",
-  "description": "alternative to react-tooltip",
+  "description": "Tooltip for React",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {

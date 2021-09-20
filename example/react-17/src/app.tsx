@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 import * as React from "react";
 
-import { AddTooltip, ElementTooltip } from "react-tooltip-solid";
+import { AddTooltip } from "@seiyab/tooltip-react";
 
 import styles from "./app.module.css";
 import { ButtonGroup } from "./ButtonGroup";
@@ -32,8 +32,7 @@ const borderColors = [
 ] as const;
 
 const App: React.VoidFunctionComponent = () => {
-  // const [event, setEvent] = React.useState<"click" | "hover">("hover");
-  const [event, setEvent] = React.useState<"click" | "hover">("click");
+  const [event, setEvent] = React.useState<"click" | "hover">("hover");
   const [direction, setDirection] = React.useState<Direction>("top");
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [borderColor, setBorderColor] = React.useState("transparent");

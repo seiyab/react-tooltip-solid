@@ -23434,7 +23434,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       var position_1 = (init_position(), position_exports);
       var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
       var useRerender_1 = (init_useRerender(), useRerender_exports);
-      var ElementTooltip3 = ({direction = direction_1.Direction.top, target, backgroundColor, borderColor, color, children}) => {
+      var ElementTooltip2 = ({direction = direction_1.Direction.top, target, backgroundColor, borderColor, color, children}) => {
         var _a, _b;
         const [rect2, ref] = useClientRect_1.useClientRect();
         const rerender = useRerender_1.useRerender();
@@ -23445,7 +23445,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         const [left, top] = position_1.calcClientCoordinate(position_1.calcAtListenerPosition((_b = (_a = target.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, direction), rect2, direction);
         return jsx_runtime_1.jsx(src_1.Tooltip, Object.assign({ref, direction, top: `${top}px`, left: `${left}px`, backgroundColor, borderColor, color}, {children}), void 0);
       };
-      exports.default = ElementTooltip3;
+      exports.default = ElementTooltip2;
     }
   });
 
@@ -23574,9 +23574,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   // src/app.tsx
   var import_react_dom = __toModule(require_react_dom());
   var React10 = __toModule(require_react());
-  var import_react_tooltip_solid = __toModule(require_lib2());
+  var import_tooltip_react = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-92456-M5SEcSm1to1C/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-94279-aGOn29aV3mfy/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
   var css4 = `._wrapper_1p1iz_1 {
   font-family: sans-serif;
@@ -23633,7 +23633,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var import_classnames = __toModule(require_classnames());
   var React9 = __toModule(require_react());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-92456-M5SEcSm1to1C/react-17/src/ButtonGroup/styles.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-94279-aGOn29aV3mfy/react-17/src/ButtonGroup/styles.module.css.js
   var digest2 = "9fe92018ee23dd2219d2cbdd4c73747c7a29b94a1cdaf80f8e3266a056f0e7e0";
   var css5 = `._wrapper_1yzde_1 {
   display: flex;
@@ -23720,7 +23720,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   ];
   var App = () => {
     var _a;
-    const [event, setEvent] = React10.useState("click");
+    const [event, setEvent] = React10.useState("hover");
     const [direction, setDirection] = React10.useState("top");
     const [backgroundColor, setBackgroundColor] = React10.useState("black");
     const [borderColor, setBorderColor] = React10.useState("transparent");
@@ -23730,7 +23730,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       className: app_module_css_default.content
     }, /* @__PURE__ */ React10.createElement("h1", null, "Tooltip Example"), /* @__PURE__ */ React10.createElement("section", null, /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.displayContainer
-    }, /* @__PURE__ */ React10.createElement(import_react_tooltip_solid.AddTooltip, {
+    }, /* @__PURE__ */ React10.createElement(import_tooltip_react.AddTooltip, {
       event,
       direction,
       backgroundColor,
