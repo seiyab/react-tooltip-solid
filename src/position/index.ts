@@ -1,7 +1,4 @@
-import { CSSProperties } from "react";
 import { Direction } from "src/position/direction";
-
-type StylePosition = Pick<CSSProperties, "left" | "top">;
 
 export type Position = [number, number];
 
