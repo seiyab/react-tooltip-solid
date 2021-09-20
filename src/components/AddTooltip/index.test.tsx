@@ -1,15 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Tooltip from "src/Tooltip";
-import TooltipListener from "src/TooltipListener";
+import AddTooltip from ".";
 
-describe("integration tests", () => {
+describe("AddTooltip", () => {
   it("appears on hover", () => {
     render(
-      <TooltipListener tooltip={<Tooltip>tooltip</Tooltip>}>
+      <AddTooltip tooltipContent="tooltip" event="hover">
         content
-      </TooltipListener>
+      </AddTooltip>
     );
     expect(screen.queryByText("tooltip")).not.toBeInTheDocument();
 
@@ -22,9 +21,9 @@ describe("integration tests", () => {
 
   it("appears on click", () => {
     render(
-      <TooltipListener event="click" tooltip={<Tooltip>tooltip</Tooltip>}>
+      <AddTooltip tooltipContent="tooltip" event="click">
         content
-      </TooltipListener>
+      </AddTooltip>
     );
     expect(screen.queryByText("tooltip")).not.toBeInTheDocument();
 

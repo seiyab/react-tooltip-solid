@@ -5,14 +5,7 @@ type StylePosition = Pick<CSSProperties, "left" | "top">;
 
 export type Position = [number, number];
 
-export function stylePosition([x, y]: Position): StylePosition {
-  return {
-    left: `${x}px`,
-    top: `${y}px`,
-  };
-}
-
-export function calcStylePosition(
+export function calcClientCoordinate(
   target: Position,
   tooltipRect: DOMRect | null,
   direction: Direction

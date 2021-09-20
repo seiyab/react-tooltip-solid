@@ -1,4 +1,6 @@
-import Tooltip from "./Tooltip";
-import TooltipListener from "./TooltipListener";
+import Tooltip from "./components/Tooltip";
+import CursorTooltip from "./components/CursorTooltip";
+import ElementTooltip from "./components/ElementTooltip";
+import AddTooltip from "./components/AddTooltip";
 
-export { Tooltip, TooltipListener };
+export { Tooltip, CursorTooltip, ElementTooltip, AddTooltip };

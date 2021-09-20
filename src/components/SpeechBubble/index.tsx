@@ -3,13 +3,14 @@ import { do_ } from "@seiyab/do-expr";
 import * as React from "react";
 
 import { Direction } from "src/position/direction";
-import { Arrow } from "src/Tooltip/Arrow";
+import { Arrow } from "src/components/Arrow";
 
 type Props = {
   className?: string;
   direction: Direction;
   backgroundColor: Exclude<React.CSSProperties["backgroundColor"], undefined>;
   borderColor: React.CSSProperties["borderColor"];
+  color: React.CSSProperties["color"];
 };
 
 const horizontalWrapper = () =>
@@ -38,6 +39,7 @@ const SpeechBubble: React.FunctionComponent<Props> = ({
   direction,
   backgroundColor,
   borderColor = "transparent",
+  color,
   children,
 }) => {
   const wrapperClass = do_(() => {
@@ -50,6 +52,7 @@ const SpeechBubble: React.FunctionComponent<Props> = ({
     padding: "8px 12px",
     backgroundColor,
     borderColor,
+    color,
     borderWidth: "1px",
     borderStyle: "solid",
   });

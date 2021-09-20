@@ -505,7 +505,7 @@
             }
             return element;
           };
-          function createElement4(type, config, children) {
+          function createElement9(type, config, children) {
             var propName;
             var props = {};
             var key = null;
@@ -763,7 +763,7 @@
             }
             return children;
           }
-          function createContext2(defaultValue, calculateChangedBits) {
+          function createContext(defaultValue, calculateChangedBits) {
             if (calculateChangedBits === void 0) {
               calculateChangedBits = null;
             } else {
@@ -942,7 +942,7 @@
             }
             return lazyType;
           }
-          function forwardRef(render2) {
+          function forwardRef2(render2) {
             {
               if (render2 != null && render2.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1051,7 +1051,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState3(initialState) {
+          function useState5(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1059,11 +1059,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1071,7 +1071,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback2(callback, deps) {
+          function useCallback4(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1553,7 +1553,7 @@
                 error("React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", typeString, info);
               }
             }
-            var element = createElement4.apply(this, arguments);
+            var element = createElement9.apply(this, arguments);
             if (element == null) {
               return element;
             }
@@ -1622,24 +1622,24 @@
           exports.PureComponent = PureComponent;
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.cloneElement = cloneElement$1;
-          exports.createContext = createContext2;
+          exports.createContext = createContext;
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
-          exports.forwardRef = forwardRef;
+          exports.forwardRef = forwardRef2;
           exports.isValidElement = isValidElement;
           exports.lazy = lazy;
           exports.memo = memo;
-          exports.useCallback = useCallback2;
+          exports.useCallback = useCallback4;
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect3;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer2;
-          exports.useRef = useRef;
-          exports.useState = useState3;
+          exports.useRef = useRef2;
+          exports.useState = useState5;
           exports.version = ReactVersion;
         })();
       }
@@ -2447,11 +2447,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React7 = require_react();
+          var React11 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2483,7 +2483,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React7) {
+          if (!React11) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -2495,7 +2495,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment = 7;
+          var Fragment2 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3699,7 +3699,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React7.Children.forEach(children, function(child) {
+            React11.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3710,7 +3710,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React7.Children.forEach(props.children, function(child) {
+                React11.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -8399,10 +8399,10 @@
           function getOwnerDocumentFromRootContainer(rootContainerElement) {
             return rootContainerElement.nodeType === DOCUMENT_NODE ? rootContainerElement : rootContainerElement.ownerDocument;
           }
-          function noop() {
+          function noop2() {
           }
           function trapClickOnNonInteractiveElement(node) {
-            node.onclick = noop;
+            node.onclick = noop2;
           }
           function setInitialDOMProperties(tag, domElement, rootContainerElement, nextProps, isCustomComponentTag) {
             for (var propKey in nextProps) {
@@ -8464,7 +8464,7 @@
               }
             }
           }
-          function createElement4(type, props, rootContainerElement, parentNamespace) {
+          function createElement9(type, props, rootContainerElement, parentNamespace) {
             var isCustomComponentTag;
             var ownerDocument = getOwnerDocumentFromRootContainer(rootContainerElement);
             var domElement;
@@ -9341,7 +9341,7 @@
               }
               parentNamespace = hostContextDev.namespace;
             }
-            var domElement = createElement4(type, props, rootContainerInstance, parentNamespace);
+            var domElement = createElement9(type, props, rootContainerInstance, parentNamespace);
             precacheFiberNode(internalInstanceHandle, domElement);
             updateFiberProps(domElement, props);
             return domElement;
@@ -10903,7 +10903,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React7.Component().refs;
+          var emptyRefsObject = new React11.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -11679,7 +11679,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment) {
+              if (current2 === null || current2.tag !== Fragment2) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12047,7 +12047,7 @@
               while (child !== null) {
                 if (child.key === key) {
                   switch (child.tag) {
-                    case Fragment: {
+                    case Fragment2: {
                       if (element.type === REACT_FRAGMENT_TYPE) {
                         deleteRemainingChildren(returnFiber, child.sibling);
                         var existing = useFiber(child, element.props.children);
@@ -15651,7 +15651,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment:
+              case Fragment2:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -15818,7 +15818,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef:
-              case Fragment:
+              case Fragment2:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -19522,7 +19522,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment, elements, key, mode);
+            var fiber = createFiber(Fragment2, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -20433,7 +20433,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React7 = require_react();
+          var React11 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -20490,7 +20490,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -22656,13 +22656,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           return cache.insert("", serialized, cache.sheet, true);
         }
       }
-      function merge(registered, css4, className) {
+      function merge(registered, css6, className) {
         var registeredStyles = [];
         var rawClassName = utils.getRegisteredStyles(registered, registeredStyles, className);
         if (registeredStyles.length < 2) {
           return className;
         }
-        return rawClassName + css4(registeredStyles);
+        return rawClassName + css6(registeredStyles);
       }
       var createEmotion = function createEmotion2(options) {
         var cache = createCache__default["default"](options);
@@ -22673,7 +22673,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           this.isSpeedy = value;
         };
         cache.compat = true;
-        var css4 = function css5() {
+        var css6 = function css7() {
           for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
             args[_key] = arguments[_key];
           }
@@ -22700,15 +22700,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           var serialized = serialize.serializeStyles(args, cache.registered);
           insertWithoutScoping(cache, serialized);
         };
-        var cx2 = function cx3() {
+        var cx3 = function cx4() {
           for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
             args[_key4] = arguments[_key4];
           }
-          return merge(cache.registered, css4, classnames(args));
+          return merge(cache.registered, css6, classnames(args));
         };
         return {
-          css: css4,
-          cx: cx2,
+          css: css6,
+          cx: cx3,
           injectGlobal,
           keyframes,
           hydrate: function hydrate(ids) {
@@ -22724,7 +22724,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           sheet: cache.sheet,
           cache,
           getRegisteredStyles: utils.getRegisteredStyles.bind(null, cache.registered),
-          merge: merge.bind(null, cache.registered, css4)
+          merge: merge.bind(null, cache.registered, css6)
         };
       };
       var classnames = function classnames2(args) {
@@ -22780,17 +22780,17 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       });
       var flush = _createEmotion.flush;
       var hydrate = _createEmotion.hydrate;
-      var cx2 = _createEmotion.cx;
+      var cx3 = _createEmotion.cx;
       var merge = _createEmotion.merge;
       var getRegisteredStyles = _createEmotion.getRegisteredStyles;
       var injectGlobal = _createEmotion.injectGlobal;
       var keyframes = _createEmotion.keyframes;
-      var css4 = _createEmotion.css;
+      var css6 = _createEmotion.css;
       var sheet = _createEmotion.sheet;
       var cache = _createEmotion.cache;
       exports.cache = cache;
-      exports.css = css4;
-      exports.cx = cx2;
+      exports.css = css6;
+      exports.cx = cx3;
       exports.flush = flush;
       exports.getRegisteredStyles = getRegisteredStyles;
       exports.hydrate = hydrate;
@@ -22813,73 +22813,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
-  // ../../node_modules/@seiyab/do-expr/lib/index.js
-  var require_lib = __commonJS({
-    "../../node_modules/@seiyab/do-expr/lib/index.js"(exports) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {value: true});
-      exports.do_ = void 0;
-      var do_ = (f) => f();
-      exports.do_ = do_;
-    }
-  });
-
-  // ../../src/hooks/useClientRect.ts
-  var useClientRect_exports = {};
-  __export(useClientRect_exports, {
-    useClientRect: () => useClientRect
-  });
-  function useClientRect() {
-    const [rect2, setRect] = React.useState(null);
-    const ref = React.useCallback((node) => {
-      if (node !== null) {
-        setRect(node.getBoundingClientRect());
-      }
-    }, []);
-    return [rect2, ref];
-  }
-  var React;
-  var init_useClientRect = __esm({
-    "../../src/hooks/useClientRect.ts"() {
-      React = __toModule(require_react());
-    }
-  });
-
-  // ../../src/hooks/useRerender.ts
-  var useRerender_exports = {};
-  __export(useRerender_exports, {
-    useRerender: () => useRerender
-  });
-  function useRerender() {
-    return React2.useReducer((x) => x + 1, 0)[1];
-  }
-  var React2;
-  var init_useRerender = __esm({
-    "../../src/hooks/useRerender.ts"() {
-      React2 = __toModule(require_react());
-    }
-  });
-
-  // ../../src/options/index.tsx
-  var options_exports = {};
-  __export(options_exports, {
-    TooltipAt: () => TooltipAt,
-    TooltipEvent: () => TooltipEvent
-  });
-  var TooltipEvent, TooltipAt;
-  var init_options = __esm({
-    "../../src/options/index.tsx"() {
-      TooltipEvent = {
-        Hover: "hover",
-        Click: "click"
-      };
-      TooltipAt = {
-        Cursor: "cursor",
-        Listener: "listener"
-      };
-    }
-  });
-
   // ../../src/position/direction.ts
   var direction_exports = {};
   __export(direction_exports, {
@@ -22897,86 +22830,18 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
-  // ../../src/position/index.ts
-  var position_exports = {};
-  __export(position_exports, {
-    calcAtCursorPosition: () => calcAtCursorPosition,
-    calcAtListenerPosition: () => calcAtListenerPosition,
-    calcStylePosition: () => calcStylePosition,
-    stylePosition: () => stylePosition
-  });
-  function stylePosition([x, y]) {
-    return {
-      left: `${x}px`,
-      top: `${y}px`
-    };
-  }
-  function calcStylePosition(target, tooltipRect, direction) {
-    if (!tooltipRect)
-      return [-1e6, -1e6];
-    const [x, y] = target;
-    const rect2 = tooltipRect;
-    const gap = 5;
-    if (direction === Direction.left)
-      return [x - rect2.width - gap, y - rect2.height / 2];
-    else if (direction === Direction.right)
-      return [x + gap, y - rect2.height / 2];
-    else if (direction === Direction.bottom)
-      return [x - rect2.width / 2, y + gap];
-    else
-      return [x - rect2.width / 2, y - rect2.height - gap];
-  }
-  function calcAtCursorPosition(cursor, direction) {
-    const [x, y] = cursor;
-    if (direction === Direction.top)
-      return [x, y - 2];
-    else if (direction === Direction.right)
-      return [x + 5, y];
-    else if (direction === Direction.left)
-      return [x - 2, y];
-    else
-      return [x, y + 15];
-  }
-  function calcAtListenerPosition(listenerRect, direction) {
-    if (!listenerRect)
-      return [-1e6, -1e6];
-    const rect2 = listenerRect;
-    const gap = 0;
-    if (direction === "left")
-      return [rect2.left - gap, rect2.top + rect2.height / 2];
-    if (direction === "right")
-      return [rect2.right + gap, rect2.top + rect2.height / 2];
-    if (direction === "bottom")
-      return [rect2.left + rect2.width / 2, rect2.bottom + gap];
-    return [rect2.left + rect2.width / 2, rect2.top - gap];
-  }
-  var init_position = __esm({
-    "../../src/position/index.ts"() {
-      init_direction();
+  // ../../node_modules/@seiyab/do-expr/lib/index.js
+  var require_lib = __commonJS({
+    "../../node_modules/@seiyab/do-expr/lib/index.js"(exports) {
+      "use strict";
+      Object.defineProperty(exports, "__esModule", {value: true});
+      exports.do_ = void 0;
+      var do_2 = (f) => f();
+      exports.do_ = do_2;
     }
   });
 
-  // ../../src/TooltipContext/index.ts
-  var TooltipContext_exports = {};
-  __export(TooltipContext_exports, {
-    TooltipContext: () => TooltipContext
-  });
-  var React3, TooltipContext;
-  var init_TooltipContext = __esm({
-    "../../src/TooltipContext/index.ts"() {
-      React3 = __toModule(require_react());
-      TooltipContext = React3.createContext({
-        listenerRef: {current: null},
-        active: false
-      });
-    }
-  });
-
-  // ../../src/Tooltip/Arrow/index.tsx
-  var Arrow_exports = {};
-  __export(Arrow_exports, {
-    Arrow: () => Arrow
-  });
+  // ../../src/components/Arrow/index.tsx
   function rect(direction) {
     const size = 14;
     if (direction === Direction.top || direction === Direction.bottom)
@@ -23030,11 +22895,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         alignItems: "flex-end"
       });
   }
-  var import_css, React4, Arrow;
+  var import_css, React, Arrow;
   var init_Arrow = __esm({
-    "../../src/Tooltip/Arrow/index.tsx"() {
+    "../../src/components/Arrow/index.tsx"() {
       import_css = __toModule(require_emotion_css_cjs());
-      React4 = __toModule(require_react());
+      React = __toModule(require_react());
       init_direction();
       Arrow = ({
         className,
@@ -23047,11 +22912,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           width: `${width}px`,
           height: `${height}px`
         });
-        return /* @__PURE__ */ React4.createElement("div", {
+        return /* @__PURE__ */ React.createElement("div", {
           className: (0, import_css.cx)(wrapperClass(direction), bound, className)
-        }, /* @__PURE__ */ React4.createElement("svg", {
+        }, /* @__PURE__ */ React.createElement("svg", {
           viewBox: `0 0 ${width} ${height}`
-        }, /* @__PURE__ */ React4.createElement("polyline", {
+        }, /* @__PURE__ */ React.createElement("polyline", {
           fill: backgroundColor,
           stroke: borderColor,
           points: points(direction)
@@ -23060,46 +22925,57 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
   });
 
-  // ../../lib/Tooltip/SpeechBubble/index.js
-  var require_SpeechBubble = __commonJS({
-    "../../lib/Tooltip/SpeechBubble/index.js"(exports) {
-      "use strict";
-      Object.defineProperty(exports, "__esModule", {value: true});
-      var jsx_runtime_1 = require_jsx_runtime();
-      var css_1 = require_emotion_css_cjs();
-      var do_expr_1 = require_lib();
-      var direction_1 = (init_direction(), direction_exports);
-      var Arrow_1 = (init_Arrow(), Arrow_exports);
-      var horizontalWrapper = () => css_1.css({
+  // ../../src/components/SpeechBubble/index.tsx
+  var SpeechBubble_exports = {};
+  __export(SpeechBubble_exports, {
+    default: () => SpeechBubble_default
+  });
+  var import_css2, import_do_expr, React2, horizontalWrapper, verticalWrapper, verticalArrow, arrowStyle, SpeechBubble, SpeechBubble_default;
+  var init_SpeechBubble = __esm({
+    "../../src/components/SpeechBubble/index.tsx"() {
+      import_css2 = __toModule(require_emotion_css_cjs());
+      import_do_expr = __toModule(require_lib());
+      React2 = __toModule(require_react());
+      init_direction();
+      init_Arrow();
+      horizontalWrapper = () => (0, import_css2.css)({
         display: "flex",
         alignItems: "center"
       });
-      var verticalWrapper = () => css_1.css({});
-      var verticalArrow = {
+      verticalWrapper = () => (0, import_css2.css)({});
+      verticalArrow = {
         marginLeft: "auto",
         marginRight: "auto"
       };
-      var arrowStyle = (direction) => {
-        if (direction === direction_1.Direction.top)
-          return css_1.css({marginTop: "-1px"}, verticalArrow);
-        else if (direction === direction_1.Direction.left)
-          return css_1.css({marginLeft: "-1px"});
-        else if (direction === direction_1.Direction.right)
-          return css_1.css({marginRight: "-1px"});
+      arrowStyle = (direction) => {
+        if (direction === Direction.top)
+          return (0, import_css2.css)({marginTop: "-1px"}, verticalArrow);
+        else if (direction === Direction.left)
+          return (0, import_css2.css)({marginLeft: "-1px"});
+        else if (direction === Direction.right)
+          return (0, import_css2.css)({marginRight: "-1px"});
         else
-          return css_1.css({marginBottom: "-1px"}, verticalArrow);
+          return (0, import_css2.css)({marginBottom: "-1px"}, verticalArrow);
       };
-      var SpeechBubble = ({className, direction, backgroundColor, borderColor = "transparent", children}) => {
-        const wrapperClass2 = do_expr_1.do_(() => {
-          if (direction === direction_1.Direction.top || direction === direction_1.Direction.bottom)
+      SpeechBubble = ({
+        className,
+        direction,
+        backgroundColor,
+        borderColor = "transparent",
+        color,
+        children
+      }) => {
+        const wrapperClass2 = (0, import_do_expr.do_)(() => {
+          if (direction === Direction.top || direction === Direction.bottom)
             return verticalWrapper();
           return horizontalWrapper();
         });
-        const contentClass = css_1.css({
+        const contentClass = (0, import_css2.css)({
           borderRadius: "3px",
           padding: "8px 12px",
           backgroundColor,
           borderColor,
+          color,
           borderWidth: "1px",
           borderStyle: "solid"
         });
@@ -23109,23 +22985,31 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           backgroundColor,
           borderColor
         };
-        return jsx_runtime_1.jsxs("div", Object.assign({className: wrapperClass2}, {children: [do_expr_1.do_(() => {
-          if (direction === direction_1.Direction.right || direction === direction_1.Direction.bottom)
-            return jsx_runtime_1.jsx(Arrow_1.Arrow, Object.assign({}, arrowProps), void 0);
+        return /* @__PURE__ */ React2.createElement("div", {
+          className: wrapperClass2
+        }, (0, import_do_expr.do_)(() => {
+          if (direction === Direction.right || direction === Direction.bottom)
+            return /* @__PURE__ */ React2.createElement(Arrow, {
+              ...arrowProps
+            });
           return null;
-        }), jsx_runtime_1.jsx("div", Object.assign({className: css_1.cx(className, contentClass)}, {children}), void 0), do_expr_1.do_(() => {
-          if (direction === direction_1.Direction.top || direction === direction_1.Direction.left)
-            return jsx_runtime_1.jsx(Arrow_1.Arrow, Object.assign({}, arrowProps), void 0);
+        }), /* @__PURE__ */ React2.createElement("div", {
+          className: (0, import_css2.cx)(className, contentClass)
+        }, children), (0, import_do_expr.do_)(() => {
+          if (direction === Direction.top || direction === Direction.left)
+            return /* @__PURE__ */ React2.createElement(Arrow, {
+              ...arrowProps
+            });
           return null;
-        })]}), void 0);
+        }));
       };
-      exports.default = SpeechBubble;
+      SpeechBubble_default = SpeechBubble;
     }
   });
 
-  // ../../lib/Tooltip/index.js
+  // ../../lib/components/Tooltip/index.js
   var require_Tooltip = __commonJS({
-    "../../lib/Tooltip/index.js"(exports) {
+    "../../lib/components/Tooltip/index.js"(exports) {
       "use strict";
       var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
         if (k2 === void 0)
@@ -23161,107 +23045,296 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       Object.defineProperty(exports, "__esModule", {value: true});
       var jsx_runtime_1 = require_jsx_runtime();
       var css_1 = require_emotion_css_cjs();
-      var do_expr_1 = require_lib();
-      var React7 = __importStar(require_react());
-      var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
-      var useRerender_1 = (init_useRerender(), useRerender_exports);
-      var options_1 = (init_options(), options_exports);
-      var position_1 = (init_position(), position_exports);
+      var React11 = __importStar(require_react());
       var direction_1 = (init_direction(), direction_exports);
-      var TooltipContext_1 = (init_TooltipContext(), TooltipContext_exports);
-      var SpeechBubble_1 = __importDefault(require_SpeechBubble());
-      var wrapper = {
+      var SpeechBubble_1 = __importDefault((init_SpeechBubble(), SpeechBubble_exports));
+      var wrapper2 = {
         position: "fixed",
         zIndex: 999
       };
-      var Tooltip2 = ({className, at = options_1.TooltipAt.Cursor, direction = direction_1.Direction.top, backgroundColor = "white", borderColor, children}) => {
-        const [rect2, ref] = useClientRect_1.useClientRect();
-        const context = React7.useContext(TooltipContext_1.TooltipContext);
-        const [cursor, setCursor] = React7.useState([0, 0]);
-        React7.useEffect(() => {
+      var Tooltip2 = React11.forwardRef(({className, direction = direction_1.Direction.top, backgroundColor = "white", borderColor, color, top, left, children}, ref) => {
+        const stopPropagation = React11.useCallback((e) => e.stopPropagation(), []);
+        return jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper2), style: {top, left}, ref, onClick: stopPropagation}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, direction, backgroundColor, borderColor, color}, {children}), void 0)}), void 0);
+      });
+      exports.default = Tooltip2;
+    }
+  });
+
+  // ../../src/components/Tooltip/index.tsx
+  var import_css3, React3, wrapper, Tooltip, Tooltip_default;
+  var init_Tooltip = __esm({
+    "../../src/components/Tooltip/index.tsx"() {
+      import_css3 = __toModule(require_emotion_css_cjs());
+      React3 = __toModule(require_react());
+      init_direction();
+      init_SpeechBubble();
+      wrapper = {
+        position: "fixed",
+        zIndex: 999
+      };
+      Tooltip = React3.forwardRef(({
+        className,
+        direction = Direction.top,
+        backgroundColor = "white",
+        borderColor,
+        color,
+        top,
+        left,
+        children
+      }, ref) => {
+        const stopPropagation = React3.useCallback((e) => e.stopPropagation(), []);
+        return /* @__PURE__ */ React3.createElement("div", {
+          className: (0, import_css3.css)(wrapper),
+          style: {top, left},
+          ref,
+          onClick: stopPropagation
+        }, /* @__PURE__ */ React3.createElement(SpeechBubble_default, {
+          className,
+          direction,
+          backgroundColor,
+          borderColor,
+          color
+        }, children));
+      });
+      Tooltip_default = Tooltip;
+    }
+  });
+
+  // ../../src/position/index.ts
+  var position_exports = {};
+  __export(position_exports, {
+    calcAtCursorPosition: () => calcAtCursorPosition,
+    calcAtListenerPosition: () => calcAtListenerPosition,
+    calcClientCoordinate: () => calcClientCoordinate
+  });
+  function calcClientCoordinate(target, tooltipRect, direction) {
+    if (!tooltipRect)
+      return [-1e6, -1e6];
+    const [x, y] = target;
+    const rect2 = tooltipRect;
+    const gap = 5;
+    if (direction === Direction.left)
+      return [x - rect2.width - gap, y - rect2.height / 2];
+    else if (direction === Direction.right)
+      return [x + gap, y - rect2.height / 2];
+    else if (direction === Direction.bottom)
+      return [x - rect2.width / 2, y + gap];
+    else
+      return [x - rect2.width / 2, y - rect2.height - gap];
+  }
+  function calcAtCursorPosition(cursor, direction) {
+    const [x, y] = cursor;
+    if (direction === Direction.top)
+      return [x, y - 2];
+    else if (direction === Direction.right)
+      return [x + 5, y];
+    else if (direction === Direction.left)
+      return [x - 2, y];
+    else
+      return [x, y + 15];
+  }
+  function calcAtListenerPosition(listenerRect, direction) {
+    if (!listenerRect)
+      return [-1e6, -1e6];
+    const rect2 = listenerRect;
+    const gap = 0;
+    if (direction === "left")
+      return [rect2.left - gap, rect2.top + rect2.height / 2];
+    if (direction === "right")
+      return [rect2.right + gap, rect2.top + rect2.height / 2];
+    if (direction === "bottom")
+      return [rect2.left + rect2.width / 2, rect2.bottom + gap];
+    return [rect2.left + rect2.width / 2, rect2.top - gap];
+  }
+  var init_position = __esm({
+    "../../src/position/index.ts"() {
+      init_direction();
+    }
+  });
+
+  // ../../src/hooks/useClientRect.ts
+  var useClientRect_exports = {};
+  __export(useClientRect_exports, {
+    useClientRect: () => useClientRect
+  });
+  function useClientRect() {
+    const [rect2, setRect] = React4.useState(null);
+    const ref = React4.useCallback((node) => {
+      if (node !== null) {
+        setRect(node.getBoundingClientRect());
+      }
+    }, []);
+    return [rect2, ref];
+  }
+  var React4;
+  var init_useClientRect = __esm({
+    "../../src/hooks/useClientRect.ts"() {
+      React4 = __toModule(require_react());
+    }
+  });
+
+  // ../../src/hooks/useRerender.ts
+  var useRerender_exports = {};
+  __export(useRerender_exports, {
+    useRerender: () => useRerender
+  });
+  function useRerender() {
+    return React5.useReducer((x) => x + 1, 0)[1];
+  }
+  var React5;
+  var init_useRerender = __esm({
+    "../../src/hooks/useRerender.ts"() {
+      React5 = __toModule(require_react());
+    }
+  });
+
+  // ../../src/components/CursorTooltip/index.tsx
+  var React6, CursorTooltip, CursorTooltip_default;
+  var init_CursorTooltip = __esm({
+    "../../src/components/CursorTooltip/index.tsx"() {
+      React6 = __toModule(require_react());
+      init_direction();
+      init_src();
+      init_position();
+      init_useClientRect();
+      init_useRerender();
+      CursorTooltip = ({
+        direction = Direction.top,
+        backgroundColor,
+        borderColor,
+        color,
+        children
+      }) => {
+        const [rect2, ref] = useClientRect();
+        const [cursor, setCursor] = React6.useState([0, 0]);
+        React6.useEffect(() => {
           const followCursor = (event) => {
             setCursor([event.clientX, event.clientY]);
           };
           document.body.addEventListener("mousemove", followCursor);
           return () => document.body.removeEventListener("mousemove", followCursor);
         }, []);
-        const stopPropagation = React7.useCallback((e) => e.stopPropagation(), []);
-        const rerender = useRerender_1.useRerender();
+        const rerender = useRerender();
+        React6.useEffect(() => {
+          document.addEventListener("scroll", rerender);
+          return () => document.removeEventListener("scroll", rerender);
+        }, [rerender]);
+        const [left, top] = calcClientCoordinate(calcAtCursorPosition(cursor, direction), rect2, direction);
+        return /* @__PURE__ */ React6.createElement(Tooltip_default, {
+          ref,
+          direction,
+          top: `${top}px`,
+          left: `${left}px`,
+          backgroundColor,
+          borderColor,
+          color
+        }, children);
+      };
+      CursorTooltip_default = CursorTooltip;
+    }
+  });
+
+  // ../../src/components/ElementTooltip/index.tsx
+  var React7, ElementTooltip, ElementTooltip_default;
+  var init_ElementTooltip = __esm({
+    "../../src/components/ElementTooltip/index.tsx"() {
+      React7 = __toModule(require_react());
+      init_direction();
+      init_src();
+      init_position();
+      init_useClientRect();
+      init_useRerender();
+      ElementTooltip = ({
+        direction = Direction.top,
+        target,
+        backgroundColor,
+        borderColor,
+        color,
+        children
+      }) => {
+        var _a, _b;
+        const [rect2, ref] = useClientRect();
+        const rerender = useRerender();
         React7.useEffect(() => {
           document.addEventListener("scroll", rerender);
           return () => document.removeEventListener("scroll", rerender);
         }, [rerender]);
-        const position = position_1.calcStylePosition(do_expr_1.do_(() => {
-          var _a, _b;
-          if (at === options_1.TooltipAt.Cursor)
-            return position_1.calcAtCursorPosition(cursor, direction);
-          return position_1.calcAtListenerPosition((_b = (_a = context.listenerRef.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, direction);
-        }), rect2, direction);
-        return jsx_runtime_1.jsx(jsx_runtime_1.Fragment, {children: context.active && jsx_runtime_1.jsx("div", Object.assign({className: css_1.css(wrapper), style: position_1.stylePosition(position), ref, onClick: stopPropagation}, {children: jsx_runtime_1.jsx(SpeechBubble_1.default, Object.assign({className, direction, backgroundColor, borderColor}, {children}), void 0)}), void 0)}, void 0);
+        const [left, top] = calcClientCoordinate(calcAtListenerPosition((_b = (_a = target.current) == null ? void 0 : _a.getBoundingClientRect()) != null ? _b : null, direction), rect2, direction);
+        return /* @__PURE__ */ React7.createElement(Tooltip_default, {
+          ref,
+          direction,
+          top: `${top}px`,
+          left: `${left}px`,
+          backgroundColor,
+          borderColor,
+          color
+        }, children);
       };
-      exports.default = Tooltip2;
+      ElementTooltip_default = ElementTooltip;
     }
   });
 
-  // ../../lib/TooltipListener/hooks/useActive.js
-  var require_useActive = __commonJS({
-    "../../lib/TooltipListener/hooks/useActive.js"(exports) {
-      "use strict";
-      var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-        if (k2 === void 0)
-          k2 = k;
-        Object.defineProperty(o, k2, {enumerable: true, get: function() {
-          return m[k];
-        }});
-      } : function(o, m, k, k2) {
-        if (k2 === void 0)
-          k2 = k;
-        o[k2] = m[k];
-      });
-      var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-        Object.defineProperty(o, "default", {enumerable: true, value: v});
-      } : function(o, v) {
-        o["default"] = v;
-      });
-      var __importStar = exports && exports.__importStar || function(mod) {
-        if (mod && mod.__esModule)
-          return mod;
-        var result = {};
-        if (mod != null) {
-          for (var k in mod)
-            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-              __createBinding(result, mod, k);
-        }
-        __setModuleDefault(result, mod);
-        return result;
+  // ../../src/components/AddTooltip/index.tsx
+  var React8, noop, AddTooltip, AddTooltip_default;
+  var init_AddTooltip = __esm({
+    "../../src/components/AddTooltip/index.tsx"() {
+      React8 = __toModule(require_react());
+      init_src();
+      noop = () => null;
+      AddTooltip = ({
+        tooltipContent,
+        direction,
+        event = "hover",
+        backgroundColor,
+        borderColor,
+        color,
+        children
+      }) => {
+        const ref = React8.useRef(null);
+        const [active, setActive] = React8.useState(false);
+        const toggle = React8.useCallback(() => setActive((prev) => !prev), []);
+        const activate = React8.useCallback(() => setActive(true), []);
+        const deactivate = React8.useCallback(() => setActive(false), []);
+        const onClick = event === "click" ? toggle : noop;
+        const onMouseEnter = event === "hover" ? activate : noop;
+        const onMouseLeave = event === "hover" ? deactivate : noop;
+        return /* @__PURE__ */ React8.createElement(React8.Fragment, null, /* @__PURE__ */ React8.createElement("div", {
+          ref,
+          onClick,
+          onMouseEnter,
+          onMouseLeave
+        }, children), active && /* @__PURE__ */ React8.createElement(ElementTooltip_default, {
+          target: ref,
+          direction,
+          backgroundColor,
+          borderColor,
+          color
+        }, tooltipContent));
       };
-      Object.defineProperty(exports, "__esModule", {value: true});
-      exports.useActive = void 0;
-      var React7 = __importStar(require_react());
-      var options_1 = (init_options(), options_exports);
-      var noop = () => {
-      };
-      function useActive(option) {
-        const [active, setActive] = React7.useState(false);
-        const activate = React7.useCallback(() => setActive(true), []);
-        const deactivate = React7.useCallback(() => setActive(false), []);
-        const toggle = React7.useCallback(() => setActive((prev) => !prev), []);
-        return {
-          active,
-          handlers: {
-            onMouseEnter: option.event === options_1.TooltipEvent.Hover ? activate : noop,
-            onMouseLeave: option.event === options_1.TooltipEvent.Hover ? deactivate : noop,
-            onClick: option.event === options_1.TooltipEvent.Click ? toggle : noop
-          }
-        };
-      }
-      exports.useActive = useActive;
+      AddTooltip_default = AddTooltip;
     }
   });
 
-  // ../../lib/TooltipListener/index.js
-  var require_TooltipListener = __commonJS({
-    "../../lib/TooltipListener/index.js"(exports) {
+  // ../../src/index.tsx
+  var src_exports = {};
+  __export(src_exports, {
+    AddTooltip: () => AddTooltip_default,
+    CursorTooltip: () => CursorTooltip_default,
+    ElementTooltip: () => ElementTooltip_default,
+    Tooltip: () => Tooltip_default
+  });
+  var init_src = __esm({
+    "../../src/index.tsx"() {
+      init_Tooltip();
+      init_CursorTooltip();
+      init_ElementTooltip();
+      init_AddTooltip();
+    }
+  });
+
+  // ../../lib/components/CursorTooltip/index.js
+  var require_CursorTooltip = __commonJS({
+    "../../lib/components/CursorTooltip/index.js"(exports) {
       "use strict";
       var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
         if (k2 === void 0)
@@ -23293,19 +23366,138 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       };
       Object.defineProperty(exports, "__esModule", {value: true});
       var jsx_runtime_1 = require_jsx_runtime();
-      var React7 = __importStar(require_react());
-      var options_1 = (init_options(), options_exports);
-      var TooltipContext_1 = (init_TooltipContext(), TooltipContext_exports);
-      var useActive_1 = require_useActive();
-      var TooltipListener2 = ({className, tooltip, event = options_1.TooltipEvent.Hover, children}) => {
-        const listenerRef = React7.useRef(null);
-        const {active, handlers} = useActive_1.useActive({event});
-        return jsx_runtime_1.jsx(TooltipContext_1.TooltipContext.Provider, Object.assign({value: {
-          listenerRef,
-          active
-        }}, {children: jsx_runtime_1.jsxs("div", Object.assign({ref: listenerRef, className}, handlers, {children: [children, tooltip]}), void 0)}), void 0);
+      var React11 = __importStar(require_react());
+      var direction_1 = (init_direction(), direction_exports);
+      var src_1 = (init_src(), src_exports);
+      var position_1 = (init_position(), position_exports);
+      var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
+      var useRerender_1 = (init_useRerender(), useRerender_exports);
+      var CursorTooltip2 = ({direction = direction_1.Direction.top, backgroundColor, borderColor, color, children}) => {
+        const [rect2, ref] = useClientRect_1.useClientRect();
+        const [cursor, setCursor] = React11.useState([0, 0]);
+        React11.useEffect(() => {
+          const followCursor = (event) => {
+            setCursor([event.clientX, event.clientY]);
+          };
+          document.body.addEventListener("mousemove", followCursor);
+          return () => document.body.removeEventListener("mousemove", followCursor);
+        }, []);
+        const rerender = useRerender_1.useRerender();
+        React11.useEffect(() => {
+          document.addEventListener("scroll", rerender);
+          return () => document.removeEventListener("scroll", rerender);
+        }, [rerender]);
+        const [left, top] = position_1.calcClientCoordinate(position_1.calcAtCursorPosition(cursor, direction), rect2, direction);
+        return jsx_runtime_1.jsx(src_1.Tooltip, Object.assign({ref, direction, top: `${top}px`, left: `${left}px`, backgroundColor, borderColor, color}, {children}), void 0);
       };
-      exports.default = TooltipListener2;
+      exports.default = CursorTooltip2;
+    }
+  });
+
+  // ../../lib/components/ElementTooltip/index.js
+  var require_ElementTooltip = __commonJS({
+    "../../lib/components/ElementTooltip/index.js"(exports) {
+      "use strict";
+      var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+        if (k2 === void 0)
+          k2 = k;
+        Object.defineProperty(o, k2, {enumerable: true, get: function() {
+          return m[k];
+        }});
+      } : function(o, m, k, k2) {
+        if (k2 === void 0)
+          k2 = k;
+        o[k2] = m[k];
+      });
+      var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+        Object.defineProperty(o, "default", {enumerable: true, value: v});
+      } : function(o, v) {
+        o["default"] = v;
+      });
+      var __importStar = exports && exports.__importStar || function(mod) {
+        if (mod && mod.__esModule)
+          return mod;
+        var result = {};
+        if (mod != null) {
+          for (var k in mod)
+            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
+              __createBinding(result, mod, k);
+        }
+        __setModuleDefault(result, mod);
+        return result;
+      };
+      Object.defineProperty(exports, "__esModule", {value: true});
+      var jsx_runtime_1 = require_jsx_runtime();
+      var React11 = __importStar(require_react());
+      var direction_1 = (init_direction(), direction_exports);
+      var src_1 = (init_src(), src_exports);
+      var position_1 = (init_position(), position_exports);
+      var useClientRect_1 = (init_useClientRect(), useClientRect_exports);
+      var useRerender_1 = (init_useRerender(), useRerender_exports);
+      var ElementTooltip3 = ({direction = direction_1.Direction.top, target, backgroundColor, borderColor, color, children}) => {
+        var _a, _b;
+        const [rect2, ref] = useClientRect_1.useClientRect();
+        const rerender = useRerender_1.useRerender();
+        React11.useEffect(() => {
+          document.addEventListener("scroll", rerender);
+          return () => document.removeEventListener("scroll", rerender);
+        }, [rerender]);
+        const [left, top] = position_1.calcClientCoordinate(position_1.calcAtListenerPosition((_b = (_a = target.current) === null || _a === void 0 ? void 0 : _a.getBoundingClientRect()) !== null && _b !== void 0 ? _b : null, direction), rect2, direction);
+        return jsx_runtime_1.jsx(src_1.Tooltip, Object.assign({ref, direction, top: `${top}px`, left: `${left}px`, backgroundColor, borderColor, color}, {children}), void 0);
+      };
+      exports.default = ElementTooltip3;
+    }
+  });
+
+  // ../../lib/components/AddTooltip/index.js
+  var require_AddTooltip = __commonJS({
+    "../../lib/components/AddTooltip/index.js"(exports) {
+      "use strict";
+      var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+        if (k2 === void 0)
+          k2 = k;
+        Object.defineProperty(o, k2, {enumerable: true, get: function() {
+          return m[k];
+        }});
+      } : function(o, m, k, k2) {
+        if (k2 === void 0)
+          k2 = k;
+        o[k2] = m[k];
+      });
+      var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+        Object.defineProperty(o, "default", {enumerable: true, value: v});
+      } : function(o, v) {
+        o["default"] = v;
+      });
+      var __importStar = exports && exports.__importStar || function(mod) {
+        if (mod && mod.__esModule)
+          return mod;
+        var result = {};
+        if (mod != null) {
+          for (var k in mod)
+            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
+              __createBinding(result, mod, k);
+        }
+        __setModuleDefault(result, mod);
+        return result;
+      };
+      Object.defineProperty(exports, "__esModule", {value: true});
+      var jsx_runtime_1 = require_jsx_runtime();
+      var React11 = __importStar(require_react());
+      var src_1 = (init_src(), src_exports);
+      var noop2 = () => null;
+      var AddTooltip3 = ({tooltipContent, direction, event = "hover", backgroundColor, borderColor, color, children}) => {
+        const ref = React11.useRef(null);
+        const [active, setActive] = React11.useState(false);
+        const toggle = React11.useCallback(() => setActive((prev) => !prev), []);
+        const activate = React11.useCallback(() => setActive(true), []);
+        const deactivate = React11.useCallback(() => setActive(false), []);
+        const onClick = event === "click" ? toggle : noop2;
+        const onMouseEnter = event === "hover" ? activate : noop2;
+        const onMouseLeave = event === "hover" ? deactivate : noop2;
+        return jsx_runtime_1.jsxs(jsx_runtime_1.Fragment, {children: [jsx_runtime_1.jsx("div", Object.assign({ref, onClick, onMouseEnter, onMouseLeave}, {children}), void 0), active && jsx_runtime_1.jsx(src_1.ElementTooltip, Object.assign({target: ref, direction, backgroundColor, borderColor, color}, {children: tooltipContent}), void 0)]}, void 0);
+      };
+      exports.default = AddTooltip3;
     }
   });
 
@@ -23317,11 +23509,15 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         return mod && mod.__esModule ? mod : {"default": mod};
       };
       Object.defineProperty(exports, "__esModule", {value: true});
-      exports.TooltipListener = exports.Tooltip = void 0;
+      exports.AddTooltip = exports.ElementTooltip = exports.CursorTooltip = exports.Tooltip = void 0;
       var Tooltip_1 = __importDefault(require_Tooltip());
       exports.Tooltip = Tooltip_1.default;
-      var TooltipListener_1 = __importDefault(require_TooltipListener());
-      exports.TooltipListener = TooltipListener_1.default;
+      var CursorTooltip_1 = __importDefault(require_CursorTooltip());
+      exports.CursorTooltip = CursorTooltip_1.default;
+      var ElementTooltip_1 = __importDefault(require_ElementTooltip());
+      exports.ElementTooltip = ElementTooltip_1.default;
+      var AddTooltip_1 = __importDefault(require_AddTooltip());
+      exports.AddTooltip = AddTooltip_1.default;
     }
   });
 
@@ -23377,28 +23573,28 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 
   // src/app.tsx
   var import_react_dom = __toModule(require_react_dom());
-  var React6 = __toModule(require_react());
+  var React10 = __toModule(require_react());
   var import_react_tooltip_solid = __toModule(require_lib2());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-36113-I1XuCyzkkAjV/react-17/src/app.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-92456-M5SEcSm1to1C/react-17/src/app.module.css.js
   var digest = "be79e7f1f93c128330a09a7d56adbde6ba7dfb93e2c10d7bfe7680e37553d04a";
-  var css2 = `._wrapper_1rmkf_1 {
+  var css4 = `._wrapper_1p1iz_1 {
   font-family: sans-serif;
   display: flex;
   justify-content: center;
 }
 
-._content_1rmkf_7 {
+._content_1p1iz_7 {
   max-width: 800px;
 }
 
-._display-container_1rmkf_11 {
+._display-container_1p1iz_11 {
   margin-top: 30px;
   display: flex;
   justify-content: center;
 }
 
-._dynamic-display_1rmkf_17 {
+._dynamic-display_1p1iz_17 {
   padding: 20px;
   border-radius: 3px;
   border-style: solid;
@@ -23406,24 +23602,20 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   border-color: darkgreen;
 }
 
-._tooltip_1rmkf_25 {
-  color: white;
-}
-
-._controls_1rmkf_29 {
+._controls_1p1iz_25 {
   margin-top: 30px;
 }
 
-._control-switch_1rmkf_33 {
+._control-switch_1p1iz_29 {
   display: flex;
   align-items: center;
 }
 
-._control-switch_1rmkf_33 + ._control-switch_1rmkf_33 {
+._control-switch_1p1iz_29 + ._control-switch_1p1iz_29 {
   margin-top: 7px;
 }
 
-._switch_1rmkf_42 {
+._switch_1p1iz_38 {
   margin-left: 5px;
 }
 `;
@@ -23431,19 +23623,19 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     if (!document.getElementById(digest)) {
       var el = document.createElement("style");
       el.id = digest;
-      el.textContent = css2;
+      el.textContent = css4;
       document.head.appendChild(el);
     }
   })();
-  var app_module_css_default = {"wrapper": "_wrapper_1rmkf_1", "content": "_content_1rmkf_7", "displayContainer": "_display-container_1rmkf_11", "dynamicDisplay": "_dynamic-display_1rmkf_17", "tooltip": "_tooltip_1rmkf_25", "controls": "_controls_1rmkf_29", "controlSwitch": "_control-switch_1rmkf_33", "switch": "_switch_1rmkf_42"};
+  var app_module_css_default = {"wrapper": "_wrapper_1p1iz_1", "content": "_content_1p1iz_7", "displayContainer": "_display-container_1p1iz_11", "dynamicDisplay": "_dynamic-display_1p1iz_17", "controls": "_controls_1p1iz_25", "controlSwitch": "_control-switch_1p1iz_29", "switch": "_switch_1p1iz_38"};
 
   // src/ButtonGroup/index.tsx
   var import_classnames = __toModule(require_classnames());
-  var React5 = __toModule(require_react());
+  var React9 = __toModule(require_react());
 
-  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-36113-I1XuCyzkkAjV/react-17/src/ButtonGroup/styles.module.css.js
+  // esbuild-css-modules-plugin-namespace:/var/folders/cj/40vcqv212sv_ksk4sxqv__f00000gn/T/tmp-92456-M5SEcSm1to1C/react-17/src/ButtonGroup/styles.module.css.js
   var digest2 = "9fe92018ee23dd2219d2cbdd4c73747c7a29b94a1cdaf80f8e3266a056f0e7e0";
-  var css3 = `._wrapper_1yzde_1 {
+  var css5 = `._wrapper_1yzde_1 {
   display: flex;
 }
 
@@ -23478,7 +23670,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     if (!document.getElementById(digest2)) {
       var el = document.createElement("style");
       el.id = digest2;
-      el.textContent = css3;
+      el.textContent = css5;
       document.head.appendChild(el);
     }
   })();
@@ -23491,11 +23683,11 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     onSelect,
     items
   }) => {
-    return /* @__PURE__ */ React5.createElement("div", {
+    return /* @__PURE__ */ React9.createElement("div", {
       className: (0, import_classnames.default)(styles_module_css_default.wrapper, className)
-    }, /* @__PURE__ */ React5.createElement("div", {
+    }, /* @__PURE__ */ React9.createElement("div", {
       className: styles_module_css_default.buttonGroup
-    }, items.map((item) => /* @__PURE__ */ React5.createElement("button", {
+    }, items.map((item) => /* @__PURE__ */ React9.createElement("button", {
       key: item.value,
       type: "button",
       className: (0, import_classnames.default)(styles_module_css_default.buttonItem, {
@@ -23516,10 +23708,6 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     {value: "hover", label: "Hover"},
     {value: "click", label: "Click"}
   ];
-  var ats = [
-    {value: "cursor", label: "Cursor"},
-    {value: "listener", label: "Listener"}
-  ];
   var backgroundColors = [
     {value: "black", label: "Black"},
     {value: "darkgreen", label: "Darkgreen"},
@@ -23532,60 +23720,51 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   ];
   var App = () => {
     var _a;
-    const [event, setEvent] = React6.useState("hover");
-    const [direction, setDirection] = React6.useState("top");
-    const [at, setAt] = React6.useState("cursor");
-    const [backgroundColor, setBackgroundColor] = React6.useState("black");
-    const [borderColor, setBorderColor] = React6.useState("transparent");
-    return /* @__PURE__ */ React6.createElement("main", {
+    const [event, setEvent] = React10.useState("click");
+    const [direction, setDirection] = React10.useState("top");
+    const [backgroundColor, setBackgroundColor] = React10.useState("black");
+    const [borderColor, setBorderColor] = React10.useState("transparent");
+    return /* @__PURE__ */ React10.createElement("main", {
       className: app_module_css_default.wrapper
-    }, /* @__PURE__ */ React6.createElement("div", {
+    }, /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.content
-    }, /* @__PURE__ */ React6.createElement("h1", null, "Tooltip Example"), /* @__PURE__ */ React6.createElement("section", null, /* @__PURE__ */ React6.createElement("div", {
+    }, /* @__PURE__ */ React10.createElement("h1", null, "Tooltip Example"), /* @__PURE__ */ React10.createElement("section", null, /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.displayContainer
-    }, /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.TooltipListener, {
+    }, /* @__PURE__ */ React10.createElement(import_react_tooltip_solid.AddTooltip, {
       event,
-      className: app_module_css_default.dynamicDisplay,
-      tooltip: /* @__PURE__ */ React6.createElement(import_react_tooltip_solid.Tooltip, {
-        className: app_module_css_default.tooltip,
-        direction,
-        at,
-        backgroundColor,
-        borderColor
-      }, "Hello")
-    }, /* @__PURE__ */ React6.createElement("span", null, (_a = events.find(({value}) => value === event)) == null ? void 0 : _a.label, " here"))), /* @__PURE__ */ React6.createElement("div", {
+      direction,
+      backgroundColor,
+      borderColor,
+      color: "white",
+      tooltipContent: "Hello"
+    }, /* @__PURE__ */ React10.createElement("div", {
+      className: app_module_css_default.dynamicDisplay
+    }, (_a = events.find(({value}) => value === event)) == null ? void 0 : _a.label, " here"))), /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.controls
-    }, /* @__PURE__ */ React6.createElement("div", {
+    }, /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "Event:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React10.createElement("span", null, "Event:"), /* @__PURE__ */ React10.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
       value: event,
       onSelect: setEvent,
       items: events
-    })), /* @__PURE__ */ React6.createElement("div", {
+    })), /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "Direction:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React10.createElement("span", null, "Direction:"), /* @__PURE__ */ React10.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
       value: direction,
       onSelect: setDirection,
       items: directions
-    })), /* @__PURE__ */ React6.createElement("div", {
+    })), /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "At:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
-      className: app_module_css_default.switch,
-      value: at,
-      onSelect: setAt,
-      items: ats
-    })), /* @__PURE__ */ React6.createElement("div", {
-      className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "Background Color:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React10.createElement("span", null, "Background Color:"), /* @__PURE__ */ React10.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
       value: backgroundColor,
       onSelect: setBackgroundColor,
       items: backgroundColors
-    })), /* @__PURE__ */ React6.createElement("div", {
+    })), /* @__PURE__ */ React10.createElement("div", {
       className: app_module_css_default.controlSwitch
-    }, /* @__PURE__ */ React6.createElement("span", null, "Border Color:"), /* @__PURE__ */ React6.createElement(ButtonGroup, {
+    }, /* @__PURE__ */ React10.createElement("span", null, "Border Color:"), /* @__PURE__ */ React10.createElement(ButtonGroup, {
       className: app_module_css_default.switch,
       value: borderColor,
       onSelect: setBorderColor,
@@ -23593,7 +23772,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }))))));
   };
   var domContainer = document.querySelector("#app");
-  (0, import_react_dom.render)(React6.createElement(App), domContainer);
+  (0, import_react_dom.render)(React10.createElement(App), domContainer);
 })();
 /*
 object-assign

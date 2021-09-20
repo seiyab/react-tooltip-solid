@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 import * as React from "react";
 
-import { Tooltip, TooltipListener } from "react-tooltip-solid";
+import { AddTooltip, ElementTooltip } from "react-tooltip-solid";
 
 import styles from "./app.module.css";
 import { ButtonGroup } from "./ButtonGroup";
@@ -19,11 +19,6 @@ const events = [
   { value: "click", label: "Click" },
 ] as const;
 
-const ats = [
-  { value: "cursor", label: "Cursor" },
-  { value: "listener", label: "Listener" },
-] as const;
-
 const backgroundColors = [
   { value: "black", label: "Black" },
   { value: "darkgreen", label: "Darkgreen" },
@@ -37,9 +32,9 @@ const borderColors = [
 ] as const;
 
 const App: React.VoidFunctionComponent = () => {
-  const [event, setEvent] = React.useState<"click" | "hover">("hover");
+  // const [event, setEvent] = React.useState<"click" | "hover">("hover");
+  const [event, setEvent] = React.useState<"click" | "hover">("click");
   const [direction, setDirection] = React.useState<Direction>("top");
-  const [at, setAt] = React.useState<"cursor" | "listener">("cursor");
   const [backgroundColor, setBackgroundColor] = React.useState("black");
   const [borderColor, setBorderColor] = React.useState("transparent");
   return (
@@ -48,25 +43,18 @@ const App: React.VoidFunctionComponent = () => {
         <h1>Tooltip Example</h1>
         <section>
           <div className={styles.displayContainer}>
-            <TooltipListener
+            <AddTooltip
               event={event}
-              className={styles.dynamicDisplay}
-              tooltip={
-                <Tooltip
-                  className={styles.tooltip}
-                  direction={direction}
-                  at={at}
-                  backgroundColor={backgroundColor}
-                  borderColor={borderColor}
-                >
-                  Hello
-                </Tooltip>
-              }
+              direction={direction}
+              backgroundColor={backgroundColor}
+              borderColor={borderColor}
+              color="white"
+              tooltipContent="Hello"
             >
-              <span>
+              <div className={styles.dynamicDisplay}>
                 {events.find(({ value }) => value === event)?.label} here
-              </span>
-            </TooltipListener>
+              </div>
+            </AddTooltip>
           </div>
           <div className={styles.controls}>
             <div className={styles.controlSwitch}>
@@ -85,15 +73,6 @@ const App: React.VoidFunctionComponent = () => {
                 value={direction}
                 onSelect={setDirection}
                 items={directions}
-              />
-            </div>
-            <div className={styles.controlSwitch}>
-              <span>At:</span>
-              <ButtonGroup
-                className={styles.switch}
-                value={at}
-                onSelect={setAt}
-                items={ats}
               />
             </div>
             <div className={styles.controlSwitch}>
